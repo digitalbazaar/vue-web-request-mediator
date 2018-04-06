@@ -7,7 +7,7 @@
  */
 'use strict';
 
-import WrmHintChooser from './WrmHintList.vue';
+import WrmHintChooser from './WrmHintChooser.vue';
 import WrmPermissionDialog from './WrmPermissionDialog.vue';
 
 export function install(Vue, options) {
