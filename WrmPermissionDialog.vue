@@ -37,11 +37,18 @@ import WrmCloseButton from './WrmCloseButton.vue';
 export default {
   name: 'WrmPermissionDialog',
   components: {WrmCloseButton},
-  beforeCreate() {
-    document.addEventListener('keydown', listener);
+  created() {
+    const self = this;
+    this._listener = event => {
+      if(event.key === 'Escape') {
+        event.preventDefault();
+        self.onDeny();
+      }
+    };
+    document.addEventListener('keydown', this._listener);
   },
   destroyed() {
-    document.removeEventListener('keydown', listener);
+    document.removeEventListener('keydown', this._listener);
   },
   props: {
     origin: {
@@ -62,15 +69,6 @@ export default {
     }
   }
 };
-
-// FIXME: `this` not properly bound
-function listener(event) {
-  if(event.key === 'Escape') {
-    event.preventDefault();
-    this.onDeny();
-  }
-}
-
 </script>
 <style>
 </style>

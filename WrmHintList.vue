@@ -6,10 +6,10 @@
         <wrm-hint
           :hint="hint"
           :default-icon="defaultHintIcon"
-          :active="activateOnSelect && selectedHint === hint"
+          :active="!!(activateOnSelect && selectedHint === hint)"
           :selected="selectedHint === hint"
           :selectable="true"
-          :disabled="selectedHint && selectedHint !== hint">
+          :disabled="!!(selectedHint && selectedHint !== hint)">
         </wrm-hint>
       </div>
     </div>
@@ -37,10 +37,7 @@ export default {
       type: String,
       required: true
     },
-    activateOnSelect: {
-      type: Boolean,
-      required: true
-    }
+    activateOnSelect: Boolean
   },
   data() {
     return {
@@ -52,11 +49,19 @@ export default {
       this.selectedHint = hint;
       try {
         // wait for selection to be handled
-        await this.onSelect({hint});
+        await this.onSelect(hint);
       } catch(e) {
         console.error(e);
       }
       this.selectedHint = null;
+    },
+    onSelect(hint) {
+      let promise = Promise.resolve();
+      this.$emit('select', {
+        hint,
+        waitUntil: p => promise = p
+      });
+      return promise;
     }
   }
 };

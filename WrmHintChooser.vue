@@ -9,14 +9,13 @@
         <wrm-hint-list
           :hints="hints"
           :default-hint-icon="defaultHintIcon"
-          :activate-on-select="false"
           @select="select">
         </wrm-hint-list>
       </div>
       <div v-if="display === 'overview'" class="wrm-slide">
         <slot name="header"></slot>
         <!-- confirm button ON and at least one choice -->
-        <div v-if="confirmButton && selectedHint"
+        <div v-if="!!(confirmButton && selectedHint)"
           @click="!confirming && (display = 'list')">
           <wrm-hint
             :hint="selectedHint"
@@ -33,7 +32,7 @@
           <wrm-hint-list
             :hints="hints"
             :default-hint-icon="defaultHintIcon"
-            :activate-on-select="true"
+            activate-on-select
             @select="confirm">
           </wrm-hint-list>
         </div>
@@ -46,7 +45,7 @@
           <button v-if="confirmButton"
             style="margin-left: 5px"
             :disabled="confirming"
-            @click="confirm(selectedHint)"
+            @click="confirm({hint: selectedHint, waitUntil: () => {}})"
             type="button" class="wrm-button wrm-primary">
             {{confirmButtonText}}
           </button>
@@ -63,17 +62,25 @@
  */
 'use strict';
 
+import WrmCloseButton from './WrmCloseButton.vue';
 import WrmHint from './WrmHint.vue';
 import WrmHintList from './WrmHintList.vue';
 
 export default {
   name: 'WrmHintChooser',
-  components: {WrmHint, WrmHintList},
-  beforeCreate() {
-    document.addEventListener('keydown', listener);
+  components: {WrmCloseButton, WrmHint, WrmHintList},
+  created() {
+    const self = this;
+    this._listener = event => {
+      if(!self.confirming && event.key === 'Escape') {
+        event.preventDefault();
+        self.close();
+      }
+    };
+    document.addEventListener('keydown', this._listener);
   },
   destroyed() {
-    document.removeEventListener('keydown', listener);
+    document.removeEventListener('keydown', this._listener);
   },
   props: {
     hints: {
@@ -108,17 +115,21 @@ export default {
       }
       this.onCancel();
     },
-    select(hint) {
-      this.selectedHint = hint;
+    select(event) {
+      this.selectedHint = event.hint;
       this.display = 'overview';
     },
-    async confirm(hint) {
-      this.selectedHint = hint;
+    async confirm(event) {
+      let _resolve;
+      const promise = new Promise(r => _resolve = r);
+      event.waitUntil(promise);
+
+      this.selectedHint = event.hint;
       this.confirming = true;
 
       try {
         // wait for selection to be handled
-        await this.onConfirm(hint);
+        await this.onConfirm(event.hint);
       } catch(e) {
         console.error(e);
       }
@@ -129,25 +140,22 @@ export default {
         this.selectedHint = this.hints[0] || null;
       }
       this.confirming = false;
+
+      _resolve();
     },
     onCancel() {
       this.$emit('cancel');
     },
     onConfirm(hint) {
-      // FIXME: this doesn't work, may need to pass in function to
-      // `onConfirm`
-      return this.$emit('confirm', hint);
+      let promise = Promise.resolve();
+      this.$emit('confirm', {
+        hint,
+        waitUntil: p => promise = p
+      });
+      return promise;
     }
   }
 };
-
-// FIXME: `this` not properly bound
-function listener(event) {
-  if(!this.confirming && event.key === 'Escape') {
-    event.preventDefault();
-    this.close();
-  }
-}
 </script>
 <style>
 </style>
