@@ -12,7 +12,7 @@
           @select="select">
         </wrm-hint-list>
       </div>
-      <div v-if="display === 'overview'" class="wrm-slide">
+      <div v-else-if="display === 'overview'" class="wrm-slide">
         <slot name="header"></slot>
         <!-- confirm button ON and at least one choice -->
         <div v-if="!!(confirmButton && selectedHint)"
@@ -27,7 +27,7 @@
           </wrm-hint>
         </div>
         <!-- confirm button OFF; selection integrated -->
-        <div v-if="!confirmButton && hints.length > 0"
+        <div v-else-if="!confirmButton && hints.length > 0"
           class="wrm-flex-column-stretch">
           <wrm-hint-list
             :hints="hints"
