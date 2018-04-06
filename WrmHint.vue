@@ -22,8 +22,11 @@
  */
 'use strict';
 
+import WrmActivityBar from './WrmActivityBar.vue';
+
 export default {
   name: 'WrmHint',
+  components: {WrmActivityBar},
   props: {
     hint: {
       type: Object,
