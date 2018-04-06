@@ -7,7 +7,7 @@
       </div>
       <div style="padding-top: 15px"></div>
       <div v-for="permission in permissions">
-        <i class="{{permission.icon}}"></i> {{permission.name}}
+        <i :class="permission.icon"></i> {{permission.name}}
       </div>
       <br>
       <div class="wrm-button-bar" style="margin-top: 10px">
