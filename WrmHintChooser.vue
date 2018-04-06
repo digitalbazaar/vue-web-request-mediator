@@ -1,7 +1,7 @@
 <template>
   <div class="wrm-modal">
     <div class="wrm-modal-content">
-      <wrm-close-button @click="!confirming && close()"
+      <wrm-close-button @click.native="!confirming && close()"
         :disabled="confirming">
       </wrm-close-button>
       <div v-if="display === 'list'" class="wrm-slide">
