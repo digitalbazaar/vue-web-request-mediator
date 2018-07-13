@@ -1,7 +1,7 @@
 <template>
   <div class="wrm-modal">
     <div class="wrm-modal-content">
-      <wrm-close-button @click.native="onDeny()"></wrm-close-button>
+      <wrm-close-button @click.native="onDeny()" />
       <div style="margin-right: 10px">
         <strong>{{origin}}</strong> wants to
       </div>
@@ -33,11 +33,12 @@
 'use strict';
 
 import WrmCloseButton from './WrmCloseButton.vue';
+import {requestStorageAccess} from './storageAccess.js';
 
 export default {
   name: 'WrmPermissionDialog',
   components: {WrmCloseButton},
-  created() {
+  async created() {
     const self = this;
     this._listener = event => {
       if(event.key === 'Escape') {
@@ -61,10 +62,12 @@ export default {
     }
   },
   methods: {
-    onAllow() {
+    async onAllow() {
+      await requestStorageAccess();
       this.$emit('allow');
     },
-    onDeny() {
+    async onDeny() {
+      await requestStorageAccess();
       this.$emit('deny');
     }
   }

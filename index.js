@@ -9,6 +9,7 @@
 
 import WrmHintChooser from './WrmHintChooser.vue';
 import WrmPermissionDialog from './WrmPermissionDialog.vue';
+export {requestStorageAccess} from './storageAccess.js';
 
 export function install(Vue, options) {
   Vue.component('wrm-hint-chooser', WrmHintChooser);

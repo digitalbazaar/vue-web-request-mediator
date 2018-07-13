@@ -2,29 +2,40 @@
   <div class="wrm-modal">
     <div class="wrm-modal-content">
       <wrm-close-button @click.native="!confirming && close()"
-        :disabled="confirming">
-      </wrm-close-button>
+        :disabled="confirming" />
       <div v-if="display === 'list'" class="wrm-slide">
         <div class="wrm-heading" style="margin-top: 0">Choose an option</div>
         <wrm-hint-list
           :hints="hints"
           :default-hint-icon="defaultHintIcon"
-          @select="select">
-        </wrm-hint-list>
+          @select="select" />
       </div>
       <div v-else-if="display === 'overview'" class="wrm-slide">
         <slot name="header"></slot>
-        <!-- confirm button ON and at least one choice -->
-        <div v-if="!!(confirmButton && selectedHint)"
+        <!-- confirm button ON and at least one choice-->
+        <div v-if="confirmButton && hints.length > 0"
           @click="!confirming && (display = 'list')">
           <wrm-hint
-            :hint="selectedHint"
+            :hint="selectedHint || hints[0]"
             :default-icon="defaultHintIcon"
             :active="confirming"
             :selected="false"
             :selectable="true"
-            :disabled="false">
-          </wrm-hint>
+            :disabled="false" />
+        </div>
+        <!-- confirm button ON, no choices, but needs storage access to
+          retrieve hints -->
+        <div v-else-if="confirmButton && needsStorageAccess"
+          @click="!confirming && (display = 'list')">
+          <div class="wrm-flex-item" @click="requestStorageAccess()">
+            <div
+              style="margin-top: 5px"
+              class="wrm-flex-row wrm-item wrm-flex-item-grow wrm-selectable">
+              <h6 class="wrm-flex-item">Choose an option</h6>
+              <div class="wrm-flex-item wrm-flex-item-grow"></div>
+              <h6><i class="wrm-flex-item fa fa-chevron-right"></i></h6>
+            </div>
+          </div>
         </div>
         <!-- confirm button OFF; selection integrated -->
         <div v-else-if="!confirmButton && hints.length > 0"
@@ -33,8 +44,7 @@
             :hints="hints"
             :default-hint-icon="defaultHintIcon"
             activate-on-select
-            @select="confirm">
-          </wrm-hint-list>
+            @select="confirm" />
         </div>
         <div class="wrm-button-bar" style="margin-top: 10px">
           <button type="button" class="wrm-button"
@@ -44,7 +54,7 @@
           </button>
           <button v-if="confirmButton"
             style="margin-left: 5px"
-            :disabled="confirming"
+            :disabled="confirming || hints.length === 0"
             @click="confirm({hint: selectedHint, waitUntil: () => {}})"
             type="button" class="wrm-button wrm-primary">
             {{confirmButtonText}}
@@ -65,11 +75,12 @@
 import WrmCloseButton from './WrmCloseButton.vue';
 import WrmHint from './WrmHint.vue';
 import WrmHintList from './WrmHintList.vue';
+import {requestStorageAccess} from './storageAccess.js';
 
 export default {
   name: 'WrmHintChooser',
   components: {WrmCloseButton, WrmHint, WrmHintList},
-  created() {
+  async created() {
     const self = this;
     this._listener = event => {
       if(!self.confirming && event.key === 'Escape') {
@@ -78,6 +89,12 @@ export default {
       }
     };
     document.addEventListener('keydown', this._listener);
+
+    if(typeof document.hasStorageAccess === 'function') {
+      this.needsStorageAccess = await document.hasStorageAccess();
+    } else {
+      this.needsStorageAccess = false;
+    }
   },
   destroyed() {
     document.removeEventListener('keydown', this._listener);
@@ -103,8 +120,9 @@ export default {
   data() {
     return {
       display: 'overview',
-      selectedHint: null,
-      confirming: false
+      confirming: false,
+      needsStorageAccess: false,
+      selectedHint: null
     };
   },
   methods: {
@@ -114,6 +132,11 @@ export default {
         return;
       }
       this.onCancel();
+    },
+    async requestStorageAccess() {
+      await requestStorageAccess();
+      this.needsStorageAccess = false;
+      this.$emit('load-hints');
     },
     select(event) {
       this.selectedHint = event.hint;
