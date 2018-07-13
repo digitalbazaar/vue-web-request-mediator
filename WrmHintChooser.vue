@@ -91,7 +91,7 @@ export default {
     document.addEventListener('keydown', this._listener);
 
     if(typeof document.hasStorageAccess === 'function') {
-      this.needsStorageAccess = await document.hasStorageAccess();
+      this.needsStorageAccess = !await document.hasStorageAccess();
     } else {
       this.needsStorageAccess = false;
     }
