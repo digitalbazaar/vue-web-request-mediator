@@ -26,8 +26,8 @@
         <!-- confirm button ON, no choices, but needs storage access to
           retrieve hints -->
         <div v-else-if="confirmButton && needsStorageAccess"
-          @click="!confirming && (display = 'list')">
-          <div class="wrm-flex-item" @click="requestStorageAccess()">
+          @click="!confirming && requestStorageAccess()">
+          <div class="wrm-flex-item">
             <div
               style="margin-top: 5px"
               class="wrm-flex-row wrm-item wrm-flex-item-grow wrm-selectable">
@@ -134,9 +134,20 @@ export default {
       this.onCancel();
     },
     async requestStorageAccess() {
+      const self = this;
       await requestStorageAccess();
       this.needsStorageAccess = false;
-      this.$emit('load-hints');
+      let promise = Promise.resolve();
+      this.$emit('load-hints', {
+        waitUntil: p => promise = p
+      });
+      try {
+        await promise;
+        console.log('promise waited');
+        if(this.hints.length > 0) {
+          self.display = 'list';
+        }
+      } catch(e) {}
     },
     select(event) {
       this.selectedHint = event.hint;
