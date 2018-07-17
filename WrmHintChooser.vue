@@ -143,7 +143,6 @@ export default {
       });
       try {
         await promise;
-        console.log('promise waited');
         if(this.hints.length > 0) {
           self.display = 'list';
         }
