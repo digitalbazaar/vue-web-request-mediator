@@ -7,11 +7,11 @@
  */
 'use strict';
 
-import WrmHintChooser from './WrmHintChooser.vue';
-import WrmPermissionDialog from './WrmPermissionDialog.vue';
 export {requestStorageAccess} from './storageAccess.js';
 
 export function install(Vue, options) {
-  Vue.component('wrm-hint-chooser', WrmHintChooser);
-  Vue.component('wrm-permission-dialog', WrmPermissionDialog);
+  Vue.component(
+    'wrm-hint-chooser', () => import('./WrmHintChooser.vue'));
+  Vue.component(
+    'wrm-permission-dialog', () => import('./WrmPermissionDialog.vue'));
 }
