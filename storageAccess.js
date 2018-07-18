@@ -10,7 +10,6 @@ export async function requestStorageAccess() {
     if(typeof document.hasStorageAccess === 'function') {
       const result = await document.hasStorageAccess();
       if(!result) {
-        console.log('requesting storage access');
         await document.requestStorageAccess();
       }
     }
