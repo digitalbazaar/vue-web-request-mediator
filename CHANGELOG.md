@@ -1,5 +1,7 @@
 # vue-web-request-mediator ChangeLog
 
+## 1.0.0 - 2018-07-20
+
 ## 0.1.0 - 2018-07-20
 
 ### Added
