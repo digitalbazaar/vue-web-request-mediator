@@ -1,6 +1,6 @@
 # vue-web-request-mediator ChangeLog
 
-## 0.0.0 - 2018-04-05
+## 0.1.0 - 2018-07-20
 
 ### Added
 - Add core files.
