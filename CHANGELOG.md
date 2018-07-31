@@ -1,5 +1,7 @@
 # vue-web-request-mediator ChangeLog
 
+## 1.0.1 - 2018-07-31
+
 ### Changed
 - Remove wrm-panel `strong` color changes.
 - Align text left in `wrm-panel`.
