@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 1.0.2 - 2018-08-03
+
+### Changed
+- Adjust text color for readability.
+
 ## 1.0.1 - 2018-07-31
 
 ### Changed
