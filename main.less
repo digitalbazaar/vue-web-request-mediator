@@ -6,6 +6,8 @@
 @wrm-gray: #aaa;
 @wrm-dark-gray: darken(@wrm-gray, 25%);
 
+@wrm-text-color: #444;
+
 @wrm-modal-font-size: 12px;
 @wrm-modal-background: #ddd;
 @wrm-modal-border-color: rgba(150, 150, 150, 0.3);
@@ -78,7 +80,7 @@ div.wrm-modal {
   border: 1px solid @wrm-modal-border-color;
   border-radius: 3px;
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
-  color: black;
+  color: @wrm-text-color;
   display: flex;
   //flex: 1 1 auto;
   flex-direction: column;
@@ -184,7 +186,7 @@ div.wrm-modal {
   border-radius: 2px;
   box-shadow: inset 0px 11px 1px -10px rgba(255, 255, 255, 0.75);
   box-sizing: border-box;
-  color: #333;
+  color: @wrm-text-color;
   cursor: pointer;
   display: inline-block;
   flex: 0 1 auto;
@@ -243,6 +245,7 @@ div.wrm-modal {
 }
 
 .wrm-panel {
+  color: @wrm-text-color;
   background-color: @wrm-modal-background;
   border-bottom: 1px solid @wrm-modal-border-color;
   font-family: Arial;
