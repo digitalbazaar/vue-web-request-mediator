@@ -1,5 +1,8 @@
 # vue-web-request-mediator ChangeLog
 
+### Fixed
+- Only use `hover` CSS when supported on platform.
+
 ## 1.0.2 - 2018-08-03
 
 ### Changed
