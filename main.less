@@ -130,16 +130,14 @@ div.wrm-modal {
       stroke-width: @wrm-close-x-stroke-width;
     }
 
-    @media (hover:hover) {
-      &:hover {
-        circle {
-          visibility: visible;
-          stroke: #777;
-          fill: #777;
-        }
-        path {
-          stroke: @wrm-modal-background;
-        }
+    &:hover {
+      circle {
+        visibility: visible;
+        stroke: #777;
+        fill: #777;
+      }
+      path {
+        stroke: @wrm-modal-background;
       }
     }
 
@@ -164,14 +162,12 @@ div.wrm-modal {
     user-select: none;
 
     svg {
-      @media (hover:hover) {
-        &:hover {
-          circle {
-            visibility: hidden;
-          }
-          path {
-            stroke: @wrm-modal-background;
-          }
+      &:hover {
+        circle {
+          visibility: hidden;
+        }
+        path {
+          stroke: @wrm-modal-background;
         }
       }
     }
@@ -216,20 +212,16 @@ div.wrm-modal {
     color: #f7f7f7;
     background-color: @wrm-primary;
 
-    @media (hover:hover) {
-      &:hover:not(:disabled) {
-        border-color: darken(@wrm-primary, 5%);
-        background-color: lighten(@wrm-primary, 5%);
-      }
+    &:hover:not(:disabled) {
+      border-color: darken(@wrm-primary, 5%);
+      background-color: lighten(@wrm-primary, 5%);
     }
   }
 
-  @media (hover:hover) {
-    &:hover:not(:disabled) {
-      border-color: #999;
-      background-color: #eee;
-      outline: none;
-    }
+  &:hover:not(:disabled) {
+    border-color: #999;
+    background-color: #eee;
+    outline: none;
   }
 
   &:active, &:focus, {
@@ -300,15 +292,13 @@ div.wrm-modal {
   &.wrm-selectable {
     touch-action: manipulation;
 
-    @media (hover:hover) {
-      &:hover {
-        background-color: @wrm-selected-background-color;
-        border: 1px solid @wrm-active-border-color !important;
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-        cursor: pointer;
-        outline: none;
-        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-      }
+    &:hover {
+      background-color: @wrm-selected-background-color;
+      border: 1px solid @wrm-active-border-color !important;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+      cursor: pointer;
+      outline: none;
+      transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     }
   }
 }

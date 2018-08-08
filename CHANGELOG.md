@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+### Fixed
+- Revert only using `hover` CSS when supported on
+  platform as not enough platforms support the
+  media query yet.
+
 ## 1.0.3 - 2018-08-08
 
 ### Fixed
