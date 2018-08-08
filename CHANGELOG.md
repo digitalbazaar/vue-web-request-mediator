@@ -1,5 +1,7 @@
 # vue-web-request-mediator ChangeLog
 
+## 1.0.5 - 2018-08-08
+
 ### Fixed
 - Use iOS-targeted media query to restrict hover
   CSS to non-iOS devices.
