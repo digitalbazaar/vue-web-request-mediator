@@ -1,8 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 1.0.6 - 2018-09-27
+
 ### Fixed
-- Allow cancelation while a credential handler
-  is loading/being confirmed.
+- Allow cancelation after a hint has been
+  selected/during its confirmation.
 
 ## 1.0.5 - 2018-08-08
 
