@@ -1,8 +1,7 @@
 <template>
   <div class="wrm-modal">
     <div class="wrm-modal-content">
-      <wrm-close-button @click.native="!confirming && close()"
-        :disabled="confirming" />
+      <wrm-close-button @click.native="close()" />
       <div v-if="display === 'list'" class="wrm-slide">
         <div class="wrm-heading" style="margin-top: 0">Choose an option</div>
         <wrm-hint-list
@@ -155,6 +154,7 @@ export default {
     async confirm(event) {
       let _resolve;
       const promise = new Promise(r => _resolve = r);
+      this._resolve = _resolve;
       event.waitUntil(promise);
 
       this.selectedHint = event.hint;
@@ -167,16 +167,23 @@ export default {
         console.error(e);
       }
 
-      if(!this.confirmButton) {
-        this.selectedHint = null;
-      } else {
-        this.selectedHint = this.hints[0] || null;
-      }
-      this.confirming = false;
+      // ensure still confirming and not canceled
+      if(this.confirming) {
+        if(!this.confirmButton) {
+          this.selectedHint = null;
+        } else {
+          this.selectedHint = this.hints[0] || null;
+        }
+        this.confirming = false;
 
-      _resolve();
+        _resolve();
+      }
     },
     onCancel() {
+      if(this.confirming) {
+        this._resolve();
+        this.confirming = false;
+      }
       this.$emit('cancel');
     },
     onConfirm(hint) {

@@ -1,5 +1,9 @@
 # vue-web-request-mediator ChangeLog
 
+### Fixed
+- Allow cancelation while a credential handler
+  is loading/being confirmed.
+
 ## 1.0.5 - 2018-08-08
 
 ### Fixed
