@@ -1,16 +1,25 @@
 <template>
   <div class="wrm-modal">
-    <div class="wrm-modal-content">
-      <wrm-close-button @click.native="close()" />
+    <div class="wrm-modal-content wrm-responsive">
+      <div
+        class="wrm-flex-row wrm-modal-content-header">
+        <div class="wrm-flex-item-grow" style="padding: 0 15px">
+          <slot name="header"></slot>
+        </div>
+        <wrm-header-close-button
+          class="wrm-flex-item"
+          style="padding-right: 5px"
+          @click.native="close()" />
+      </div>
       <div v-if="display === 'list'" class="wrm-slide">
-        <div class="wrm-heading" style="margin-top: 0">Choose an option</div>
+        <div class="wrm-heading" style="padding: 2px 0">Choose an option</div>
         <wrm-hint-list
           :hints="hints"
           :default-hint-icon="defaultHintIcon"
           @select="select" />
       </div>
       <div v-else-if="display === 'overview'" class="wrm-slide">
-        <slot name="header"></slot>
+        <slot name="message"></slot>
         <!-- confirm button ON and at least one choice-->
         <div v-if="confirmButton && hints.length > 0"
           @click="!confirming && (display = 'list')">
@@ -45,13 +54,14 @@
             activate-on-select
             @select="confirm" />
         </div>
-        <div class="wrm-button-bar" style="margin-top: 10px">
+        <div v-if="confirmButton"
+          class="wrm-button-bar" style="margin-top: 10px">
           <button type="button" class="wrm-button"
             :disabled="confirming"
             @click="onCancel()">
             Cancel
           </button>
-          <button v-if="confirmButton"
+          <button
             style="margin-left: 5px"
             :disabled="confirming || hints.length === 0"
             @click="confirm({hint: selectedHint, waitUntil: () => {}})"
