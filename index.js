@@ -8,10 +8,15 @@
 'use strict';
 
 export {requestStorageAccess} from './storageAccess.js';
+export {getWebAppManifestIcon} from './manifest.js';
 
 export function install(Vue, options) {
   Vue.component(
     'wrm-hint-chooser', () => import('./WrmHintChooser.vue'));
   Vue.component(
+    'wrm-origin-card', () => import('./WrmOriginCard.vue'));
+  Vue.component(
     'wrm-permission-dialog', () => import('./WrmPermissionDialog.vue'));
+  Vue.component(
+    'wrm-header-close-button', () => import('./WrmHeaderCloseButton.vue'));
 }
