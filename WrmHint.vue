@@ -7,7 +7,13 @@
       style="width: 32px; max-height: 32px" class="wrm-flex-item">
     <div style="margin-left: 10px;" class="wrm-flex-item-grow">
       <strong>{{hint.name}}</strong>
-      <h6>{{hint.origin}}</h6>
+      <div class="wrm-flex-row" style="justify-content: flex-start">
+        <i class="fa fa-lock wrm-flex-item wrm-green"
+          style="padding-right: 2px"></i>
+        <h6>
+          <span class="wrm-green">https</span>://{{hint.origin.substr(8)}}</span>
+        </h6>
+      </div>
       <wrm-activity-bar v-if="active"></wrm-activity-bar>
       <!-- ensure same spacing whether activity bar is present or not -->
       <div v-else class="wrm-activity-bar" style="visibility: hidden"></div>
