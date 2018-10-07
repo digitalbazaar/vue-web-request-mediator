@@ -54,6 +54,7 @@
             activate-on-select
             @select="confirm" />
         </div>
+        <slot name="hint-list-footer"></slot>
         <div v-if="confirmButton"
           class="wrm-button-bar" style="margin-top: 10px">
           <button type="button" class="wrm-button"
@@ -69,6 +70,7 @@
             {{confirmButtonText}}
           </button>
         </div>
+        <slot name="footer"></slot>
       </div>
     </div>
   </div>
