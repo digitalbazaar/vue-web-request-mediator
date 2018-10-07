@@ -3,7 +3,7 @@
     <i
       v-if="iconType === 'default'"
       style="font-size: 48px; padding-right: 10px"
-      class="fa fa-globe wrm-flex-item"></i>
+      class="fas fa-globe wrm-flex-item"></i>
     <img
       v-else
       :src="icon"
@@ -19,7 +19,7 @@
       </div>
       <div class="wrm-flex-row"
         style="justify-content: flex-start; font-weight: bold">
-        <i class="fa fa-lock wrm-flex-item wrm-green"
+        <i class="fas fa-lock wrm-flex-item wrm-green"
           style="padding-right: 2px"></i>
         <span v-if="domain">
           <span class="wrm-green">https</span><span class="wrm-dark-gray">://{{domain}}</span>

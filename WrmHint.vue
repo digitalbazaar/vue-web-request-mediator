@@ -1,14 +1,14 @@
 <template>
   <div :class="hintClass">
     <i v-if="!hint.icon"
-      :class="[defaultIcon, 'fa fa-pull-left wrm-flex-item']"
-      style="padding-left: 8px; font-size: 32px"></i>
+      :class="[defaultIcon, 'fas wrm-flex-item']"
+      style="padding: 0 5px 0 5px; font-size: 32px"></i>
     <img v-if="hint.icon" :src="hint.icon.fetchedImage"
       style="width: 32px; max-height: 32px" class="wrm-flex-item">
     <div style="margin-left: 10px;" class="wrm-flex-item-grow">
       <strong>{{hint.name}}</strong>
       <div class="wrm-flex-row" style="justify-content: flex-start">
-        <i class="fa fa-lock wrm-flex-item wrm-green"
+        <i class="fas fa-lock wrm-flex-item wrm-green"
           style="padding-right: 2px"></i>
         <h6>
           <span class="wrm-green">https</span>://{{hint.origin.substr(8)}}</span>
