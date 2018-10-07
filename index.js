@@ -12,6 +12,8 @@ export {getWebAppManifestIcon} from './manifest.js';
 
 export function install(Vue, options) {
   Vue.component(
+    'wrm-checkbox', () => import('./WrmCheckbox.vue'));
+  Vue.component(
     'wrm-hint-chooser', () => import('./WrmHintChooser.vue'));
   Vue.component(
     'wrm-origin-card', () => import('./WrmOriginCard.vue'));

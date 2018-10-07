@@ -5,6 +5,9 @@
 @wrm-darker-gray: darken(@wrm-gray, 10%);
 @wrm-dark-gray: darken(@wrm-gray, 25%);
 
+@wrm-blue: #0077b3;
+@wrm-green: #188038;
+
 @wrm-text-color: #444;
 
 @wrm-modal-font-size: 12px;
@@ -14,7 +17,7 @@
 @wrm-selectable-background-color: lighten(@wrm-modal-background, 5%);
 @wrm-selected-background-color: lighten(@wrm-selectable-background-color, 10%);
 
-@wrm-active-border-color: #0077b3;
+@wrm-active-border-color: @wrm-blue;
 @wrm-primary: lighten(@wrm-active-border-color, 5%);
 @wrm-activity-bar-background-color: darken(@wrm-active-border-color, 5%);
 @wrm-activity-bar-line-color: lighten(@wrm-active-border-color, 40%);
@@ -141,7 +144,7 @@ div.wrm-modal {
 };
 
 .wrm-green {
-  color: #188038;
+  color: @wrm-green;
 };
 
 .wrm-dark-gray {
@@ -409,6 +412,39 @@ div.wrm-modal {
         transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
       }
     }
+  }
+}
+
+/* Checkbox */
+.wrm-checkbox {
+  & label {
+    cursor: pointer;
+  }
+  & input[type='checkbox'] {
+    display:none;
+  }
+  & input[type='checkbox'] + .wrm-label:before {
+    font-size: 16px;
+    font-family: 'Font Awesome 5 Free';
+    display: inline-block;
+    letter-spacing: 5px;
+  }
+  /* unchecked */
+  & input[type='checkbox'] + .wrm-label:before {
+    /* unchecked icon */
+    content: '\f0c8';
+  }
+  /* checked */
+  & input[type='checkbox']:checked + .wrm-label:before {
+    /* checked icon */
+    content: '\f14a';
+    font-weight: bold;
+  }
+  &.wrm-green input[type='checkbox']:checked + .wrm-label:before {
+    color: @wrm-green;
+  }
+  &.wrm-blue input[type='checkbox']:checked + .wrm-label:before {
+    color: @wrm-blue;
   }
 }
 
