@@ -41,7 +41,7 @@
               class="wrm-flex-row wrm-item wrm-flex-item-grow wrm-selectable">
               <h6 class="wrm-flex-item">Choose an option</h6>
               <div class="wrm-flex-item wrm-flex-item-grow"></div>
-              <h6><i class="wrm-flex-item fa fa-chevron-right"></i></h6>
+              <h6><i class="wrm-flex-item fas fa-chevron-right"></i></h6>
             </div>
           </div>
         </div>
