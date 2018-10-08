@@ -4,7 +4,7 @@
     v-bind:style="checkboxStyle">
     <label>
       <input type="checkbox" :value="value" @input="toggle">
-      <span class="wrm-label">{{label}}</span>
+      <span class="wrm-label" v-bind:class="labelClass">{{label}}</span>
     </label>
   </div>
 </template>
@@ -28,6 +28,10 @@ export default {
       required: false
     },
     label: {
+      type: String,
+      required: false
+    },
+    labelClass: {
       type: String,
       required: false
     },
