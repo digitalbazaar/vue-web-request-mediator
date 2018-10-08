@@ -14,11 +14,11 @@ export function install(Vue, options) {
   Vue.component(
     'wrm-checkbox', () => import('./WrmCheckbox.vue'));
   Vue.component(
+    'wrm-header-close-button', () => import('./WrmHeaderCloseButton.vue'));
+  Vue.component(
     'wrm-hint-chooser', () => import('./WrmHintChooser.vue'));
   Vue.component(
     'wrm-origin-card', () => import('./WrmOriginCard.vue'));
   Vue.component(
     'wrm-permission-dialog', () => import('./WrmPermissionDialog.vue'));
-  Vue.component(
-    'wrm-header-close-button', () => import('./WrmHeaderCloseButton.vue'));
 }
