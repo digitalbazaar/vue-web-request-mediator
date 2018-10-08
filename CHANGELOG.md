@@ -1,5 +1,7 @@
 # vue-web-request-mediator ChangeLog
 
+## 1.1.0 - 2018-10-08
+
 ### Added
 - Add `WrmOriginCard` component.
 - Add `message` slot for hint chooser.
