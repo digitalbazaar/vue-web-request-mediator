@@ -1,14 +1,15 @@
 # vue-web-request-mediator ChangeLog
 
-### Fixed
+### Added
 - Add `WrmOriginCard` component.
 - Add `message` slot for hint chooser.
-- Simplify hint chooser UI (remove cancel
-  button when confirm button is not shown).
-- Provide method for getting web app manifest
-  icon.
-- Improve CSS for close buttons and more
-  responsive modals.
+- Provide method for getting web app manifest icon.
+- Add `WrmCheckbox` component.
+
+### Changed
+- Simplify hint chooser UI (remove cancel button when confirm
+  button is not shown).
+- Improve CSS for close buttons and more responsive modals.
 
 ## 1.0.6 - 2018-09-27
 
