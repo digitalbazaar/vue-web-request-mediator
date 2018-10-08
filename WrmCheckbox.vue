@@ -3,7 +3,7 @@
     v-bind:class="checkboxClass"
     v-bind:style="checkboxStyle">
     <label>
-      <input type="checkbox" :value="value" @input="toggle">
+      <input type="checkbox" :checked="value" @input="toggle">
       <span class="wrm-label" v-bind:class="labelClass">{{label}}</span>
     </label>
   </div>
