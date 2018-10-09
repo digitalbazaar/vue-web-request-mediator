@@ -67,7 +67,7 @@
 }
 
 div.wrm-modal {
-  position: static;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
@@ -80,6 +80,10 @@ div.wrm-modal {
   flex-direction: column;
   align-items: center;
   background: transparent;
+  max-width: 100vw;
+  max-height: 100vh;
+
+  /* 400px width plus 15px padding on left and right */
   @media screen and (max-width: 430px) {
     /* full screen appearance */
     height: 100vh;
@@ -88,7 +92,7 @@ div.wrm-modal {
   }
   @media screen and (min-width: 431px) {
     /* dialog appearance */
-    justify-content: center;
+    justify-content: flex-start;
     padding-bottom: 5px;
   }
 }
@@ -115,7 +119,7 @@ div.wrm-modal {
   /* 400px width plus 15px padding on left and right */
   @media screen and (max-width: 430px) {
     /* full screen appearance */
-    margin-top: auto;
+    margin-top: 0;
     /* must subtract padding */
     width: calc(100vw - 30px);
     /* greater contrast border color */
