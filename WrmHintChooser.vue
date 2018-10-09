@@ -1,6 +1,6 @@
 <template>
   <div class="wrm-modal">
-    <div class="wrm-modal-content wrm-responsive">
+    <div class="wrm-modal-content wrm-modal-wide">
       <div
         class="wrm-flex-row wrm-modal-content-header">
         <div class="wrm-flex-item-grow" style="padding: 0 15px">

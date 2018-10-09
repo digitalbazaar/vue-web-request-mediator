@@ -111,27 +111,27 @@ div.wrm-modal {
   //overflow-y: auto;
   padding: 15px;
   position: relative;
-  width: 300px;
 
-  &.wrm-responsive {
-    /* 400px width plus 15px padding on left and right */
-    @media screen and (max-width: 430px) {
-      /* full screen appearance */
-      margin-top: auto;
-      /* must subtract padding */
-      width: calc(100vw - 30px);
-      /* greater contrast border color */
-      border-top: 1px solid @wrm-darker-gray;
-      border-radius: 0;
-      box-shadow: none;
-    }
-    @media screen and (min-width: 431px) {
-      /* dialog appearance */
-      margin-top: -1px;
+  /* 400px width plus 15px padding on left and right */
+  @media screen and (max-width: 430px) {
+    /* full screen appearance */
+    margin-top: auto;
+    /* must subtract padding */
+    width: calc(100vw - 30px);
+    /* greater contrast border color */
+    border-top: 1px solid @wrm-darker-gray;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  @media screen and (min-width: 431px) {
+    /* dialog appearance */
+    margin-top: -1px;
+    border: 1px solid @wrm-modal-border-color;
+    border-radius: 0 0 3px 3px;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    &.wrm-modal-wide {
       width: 400px;
-      border: 1px solid @wrm-modal-border-color;
-      border-radius: 0 0 3px 3px;
-      box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
     }
   }
 }

@@ -1,5 +1,8 @@
 # vue-web-request-mediator ChangeLog
 
+### Fixed
+- Fix responsive modal bugs.
+
 ## 1.1.0 - 2018-10-08
 
 ### Added
