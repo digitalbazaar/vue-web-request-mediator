@@ -1,5 +1,8 @@
 # vue-web-request-mediator ChangeLog
 
+### Fixed
+- Remove erroneous overflow class.
+
 ## 1.1.4 - 2018-10-09
 
 ### Changed

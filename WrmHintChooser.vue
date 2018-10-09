@@ -5,7 +5,7 @@
         class="wrm-flex-row wrm-modal-content-header">
         <div
           class="wrm-flex-item-grow"
-          style="padding: 0 15px; overflow-x: hidden">
+          style="padding: 0 15px">
           <slot name="header"></slot>
         </div>
         <wrm-header-close-button
