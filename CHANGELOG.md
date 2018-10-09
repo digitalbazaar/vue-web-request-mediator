@@ -1,5 +1,8 @@
 # vue-web-request-mediator ChangeLog
 
+### Fixed
+- Add ellipsis overflow CSS.
+
 ## 1.1.2 - 2018-10-09
 
 ### Fixed

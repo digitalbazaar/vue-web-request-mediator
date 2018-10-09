@@ -5,12 +5,12 @@
       style="padding: 0 5px 0 5px; font-size: 32px"></i>
     <img v-if="hint.icon" :src="hint.icon.fetchedImage"
       style="width: 32px; max-height: 32px" class="wrm-flex-item">
-    <div style="margin-left: 10px;" class="wrm-flex-item-grow">
+    <div style="margin-left: 10px;" class="wrm-flex-item-grow wrm-ellipsis">
       <strong>{{hint.name}}</strong>
       <div class="wrm-flex-row" style="justify-content: flex-start">
         <i class="fas fa-lock wrm-flex-item wrm-green"
           style="padding-right: 2px"></i>
-        <h6>
+        <h6 class="wrm-ellipsis">
           <span class="wrm-green">https</span><span class="wrm-dark-gray">://{{hint.origin.substr(8)}}</span>
         </h6>
       </div>

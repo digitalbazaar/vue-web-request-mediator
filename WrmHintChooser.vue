@@ -3,7 +3,8 @@
     <div class="wrm-modal-content wrm-modal-wide">
       <div
         class="wrm-flex-row wrm-modal-content-header">
-        <div class="wrm-flex-item-grow" style="padding: 0 15px">
+        <div
+          class="wrm-flex-item-grow wrm-ellipsis" style="padding: 0 15px">
           <slot name="header"></slot>
         </div>
         <wrm-header-close-button
