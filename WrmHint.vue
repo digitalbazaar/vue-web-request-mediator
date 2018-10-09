@@ -10,7 +10,7 @@
       <div class="wrm-flex-row" style="justify-content: flex-start">
         <i class="fas fa-lock wrm-flex-item wrm-green"
           style="padding-right: 2px"></i>
-        <h6 class="wrm-ellipsis">
+        <h6>
           <span class="wrm-green">https</span><span class="wrm-dark-gray">://{{hint.origin.substr(8)}}</span>
         </h6>
       </div>

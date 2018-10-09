@@ -1,5 +1,8 @@
 # vue-web-request-mediator ChangeLog
 
+### Changed
+- Enable scrolling ellipsis text on mobile.
+
 ## 1.1.3 - 2018-10-09
 
 ### Fixed

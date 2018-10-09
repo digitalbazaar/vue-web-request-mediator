@@ -11,17 +11,15 @@
       class="wrm-flex-item"
       @error="imageError">
     <div class="wrm-flex-item-grow wrm-ellipsis">
+      <slot style="font-size: 14px" name="task"></slot>
       <div style="font-size: 14px">
-        <div>
-          <slot name="task"></slot>
-        </div>
         <strong>{{name}}</strong>
       </div>
       <div class="wrm-flex-row"
         style="justify-content: flex-start; font-weight: bold">
         <i class="fas fa-lock wrm-flex-item wrm-green"
           style="padding-right: 2px"></i>
-        <span v-if="domain" class="wrm-ellipsis">
+        <span v-if="domain">
           <span class="wrm-green">https</span><span class="wrm-dark-gray">://{{domain}}</span>
         </span>
         <span v-else>

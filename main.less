@@ -158,7 +158,24 @@ div.wrm-modal {
 .wrm-ellipsis {
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden
+  overflow: hidden;
+  div, span, h6 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &:hover, &.wrm-ellipsis-off {
+    text-overflow: inherit;
+    overflow-x: auto;
+    div, span, h6 {
+      text-overflow: inherit;
+      overflow: visible;
+    }
+  }
+
+  &:hover::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .wrm-header-hint {
