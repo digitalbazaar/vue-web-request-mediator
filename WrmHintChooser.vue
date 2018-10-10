@@ -1,11 +1,10 @@
 <template>
   <div class="wrm-modal">
-    <div class="wrm-modal-content wrm-modal-wide">
-      <div
-        class="wrm-flex-row wrm-modal-content-header">
+    <div class="wrm-modal-content wrm-modern">
+      <div class="wrm-flex-row wrm-modal-content-header wrm-modern">
         <div
           class="wrm-flex-item-grow"
-          style="padding: 0 15px">
+          style="padding: 0 15px; overflow: hidden">
           <slot name="header"></slot>
         </div>
         <wrm-header-close-button

@@ -1,5 +1,8 @@
 # vue-web-request-mediator ChangeLog
 
+### Changed
+- Use more modern (brighter) CSS colors.
+
 ## 1.1.5 - 2018-10-09
 
 ### Fixed
