@@ -1,20 +1,10 @@
 <template>
   <div class="wrm-ellipsis">
-    <slot style="font-size: 14px" name="task"></slot>
-    <div style="font-size: 14px">
+    <slot name="task"></slot>
+    <div>
       <strong>{{name}}</strong>
     </div>
-    <div class="wrm-flex-row"
-      style="justify-content: flex-start; font-weight: bold">
-      <i class="fas fa-lock wrm-flex-item wrm-green"
-        style="padding-right: 2px"></i>
-      <span v-if="domain">
-        <span class="wrm-green">https</span><span class="wrm-dark-gray">://{{domain}}</span>
-      </span>
-      <span v-else>
-        <span class="wrm-dark-gray">{{origin}}</span>
-      </span>
-    </div>
+    <wrm-origin :origin="origin" />
   </div>
 </template>
 <script>
@@ -25,8 +15,11 @@
  */
 'use strict';
 
+import WrmOrigin from './WrmOrigin.vue';
+
 export default {
   name: 'WrmOriginName',
+  components: {WrmOrigin},
   computed: {
     domain() {
       // origin should always start with `https://`
