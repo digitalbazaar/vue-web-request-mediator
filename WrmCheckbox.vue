@@ -1,10 +1,10 @@
 <template>
   <div class="wrm-checkbox"
-    v-bind:class="checkboxClass"
-    v-bind:style="checkboxStyle">
+    :class="checkboxClass"
+    :style="checkboxStyle">
     <label>
       <input type="checkbox" :checked="value" @input="toggle">
-      <span class="wrm-label" v-bind:class="labelClass">{{label}}</span>
+      <span class="wrm-label" :class="labelClass">{{label}}</span>
     </label>
   </div>
 </template>
