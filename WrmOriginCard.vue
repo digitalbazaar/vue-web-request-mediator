@@ -5,14 +5,17 @@
       :origin="origin"
       :manifest="manifest"
       style="padding-right: 10px" />
-    <wrm-origin-name
-      :origin="origin"
-      :manifest="manifest"
-      class="wrm-flex-item-grow">
-      <template slot="task">
-        <slot name="task"></slot>
-      </template>
-    </wrm-origin-name>
+    <div class="wrm-flex-item-grow wrm-ellipsis">
+      <wrm-origin-name
+        :origin="origin"
+        :manifest="manifest"
+        class="wrm-flex-item-grow">
+        <template slot="task">
+          <slot name="task"></slot>
+        </template>
+      </wrm-origin-name>
+      <wrm-origin :origin="origin" />
+    </div>
   </div>
 </template>
 <script>

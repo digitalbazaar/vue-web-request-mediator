@@ -1,10 +1,9 @@
 <template>
-  <div class="wrm-ellipsis">
+  <div>
     <slot name="task"></slot>
     <div>
       <strong>{{name}}</strong>
     </div>
-    <wrm-origin :origin="origin" />
   </div>
 </template>
 <script>
@@ -15,11 +14,8 @@
  */
 'use strict';
 
-import WrmOrigin from './WrmOrigin.vue';
-
 export default {
   name: 'WrmOriginName',
-  components: {WrmOrigin},
   computed: {
     domain() {
       // origin should always start with `https://`
