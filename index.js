@@ -22,5 +22,7 @@ export function install(Vue, options) {
   Vue.component(
     'wrm-origin-icon', () => import('./WrmOriginIcon.vue'));
   Vue.component(
+    'wrm-origin-name', () => import('./WrmOriginName.vue'));
+  Vue.component(
     'wrm-permission-dialog', () => import('./WrmPermissionDialog.vue'));
 }

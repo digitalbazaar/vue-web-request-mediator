@@ -2,10 +2,12 @@
   <span>
     <i
       v-if="iconType === 'default'"
+      style="vertical-align: middle"
       :style="{'font-size': iconPixelSize}"
       :class="defaultIcon"></i>
     <img
       v-else
+      style="vertical-align: middle"
       :src="icon"
       :style="{
         width: iconPixelSize,

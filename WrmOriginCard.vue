@@ -5,23 +5,14 @@
       :origin="origin"
       :manifest="manifest"
       style="padding-right: 10px" />
-    <div class="wrm-flex-item-grow wrm-ellipsis">
-      <slot style="font-size: 14px" name="task"></slot>
-      <div style="font-size: 14px">
-        <strong>{{name}}</strong>
-      </div>
-      <div class="wrm-flex-row"
-        style="justify-content: flex-start; font-weight: bold">
-        <i class="fas fa-lock wrm-flex-item wrm-green"
-          style="padding-right: 2px"></i>
-        <span v-if="domain">
-          <span class="wrm-green">https</span><span class="wrm-dark-gray">://{{domain}}</span>
-        </span>
-        <span v-else>
-          <span class="wrm-dark-gray">{{origin}}</span>
-        </span>
-      </div>
-    </div>
+    <wrm-origin-name
+      :origin="origin"
+      :manifest="manifest"
+      class="wrm-flex-item-grow">
+      <template slot="task">
+        <slot name="task"></slot>
+      </template>
+    </wrm-origin-name>
   </div>
 </template>
 <script>
@@ -33,26 +24,11 @@
 'use strict';
 
 import WrmOriginIcon from './WrmOriginIcon.vue';
+import WrmOriginName from './WrmOriginName.vue';
 
 export default {
   name: 'WrmOriginCard',
-  components: {WrmOriginIcon},
-  computed: {
-    domain() {
-      // origin should always start with `https://`
-      if(this.origin.startsWith('https://')) {
-        return this.origin.substr(8);
-      }
-      return null;
-    },
-    name() {
-      if(!this.manifest) {
-        return this.domain || this.origin;
-      }
-      const {name, short_name} = this.manifest;
-      return name || short_name || this.domain || this.origin;
-    }
-  },
+  components: {WrmOriginIcon, WrmOriginName},
   props: {
     origin: {
       type: String,
