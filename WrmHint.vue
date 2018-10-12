@@ -9,13 +9,7 @@
     <div style="margin-left: 10px; margin-top: 3px"
       class="wrm-flex-item-grow wrm-ellipsis">
       <strong>{{hint.name}}</strong>
-      <div class="wrm-flex-row" style="justify-content: flex-start">
-        <i class="fas fa-lock wrm-flex-item wrm-green"
-          style="padding-right: 2px"></i>
-        <h6>
-          <span class="wrm-dark-gray">{{hint.origin.substr(8)}}</span>
-        </h6>
-      </div>
+      <wrm-origin :origin="hint.origin" />
       <wrm-activity-bar v-if="active"></wrm-activity-bar>
       <!-- ensure same spacing whether activity bar is present or not -->
       <div v-else class="wrm-activity-bar" style="visibility: hidden"></div>
@@ -31,10 +25,11 @@
 'use strict';
 
 import WrmActivityBar from './WrmActivityBar.vue';
+import WrmOriginName from './WrmOriginName.vue';
 
 export default {
   name: 'WrmHint',
-  components: {WrmActivityBar},
+  components: {WrmActivityBar, WrmOriginName},
   props: {
     hint: {
       type: Object,
