@@ -1,5 +1,14 @@
 # vue-web-request-mediator ChangeLog
 
+### Changed
+- Make `wrm-panel` appear as a modal with an iframe sibling.
+- Remove `https` from origin display.
+
+### Added
+- Add `WrmOrigin` component.
+- Add `WrmOriginName` component.
+- Add `WrmOriginIcon` component.
+
 ## 1.1.6 - 2018-10-10
 
 ### Changed
