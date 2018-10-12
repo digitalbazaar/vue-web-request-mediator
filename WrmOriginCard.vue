@@ -9,7 +9,8 @@
       <wrm-origin-name
         :origin="origin"
         :manifest="manifest"
-        class="wrm-flex-item-grow">
+        class="wrm-flex-item-grow"
+        style="padding-bottom: 2px">
         <template slot="task">
           <slot name="task"></slot>
         </template>

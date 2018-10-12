@@ -1,5 +1,6 @@
 <template>
-  <div class="wrm-flex-row"
+  <div
+    class="wrm-flex-row"
     style="justify-content: flex-start; font-weight: bold">
     <i class="fas fa-lock wrm-flex-item wrm-green"
       style="padding-right: 2px"></i>
