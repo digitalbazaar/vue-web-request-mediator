@@ -2,9 +2,10 @@
   <div :class="hintClass">
     <i v-if="!hint.icon"
       :class="[defaultIcon, 'fas wrm-flex-item']"
-      style="padding: 0 5px 0 5px; font-size: 32px"></i>
+      style="padding: 0 5px 0 5px; font-size: 48px"></i>
     <img v-if="hint.icon" :src="hint.icon.fetchedImage"
-      style="width: 32px; max-height: 32px" class="wrm-flex-item">
+      style="width: 48px; min-width: 48px; max-height: 48px"
+      class="wrm-flex-item">
     <div style="margin-left: 10px; margin-top: 3px"
       class="wrm-flex-item-grow wrm-ellipsis">
       <strong>{{hint.name}}</strong>
@@ -12,7 +13,7 @@
         <i class="fas fa-lock wrm-flex-item wrm-green"
           style="padding-right: 2px"></i>
         <h6>
-          <span class="wrm-green">https</span><span class="wrm-dark-gray">://{{hint.origin.substr(8)}}</span>
+          <span class="wrm-dark-gray">{{hint.origin.substr(8)}}</span>
         </h6>
       </div>
       <wrm-activity-bar v-if="active"></wrm-activity-bar>
