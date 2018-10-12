@@ -4,7 +4,8 @@
     <i class="fas fa-lock wrm-flex-item wrm-green"
       style="padding-right: 2px"></i>
     <span v-if="domain">
-      <span class="wrm-green">https</span><span class="wrm-dark-gray">://{{domain}}</span>
+      <!-- span class="wrm-green">https</span><span class="wrm-dark-gray">://{{domain}}</span -->
+      <span class="wrm-dark-gray">{{domain}}</span>
     </span>
     <span v-else>
       <span class="wrm-dark-gray">{{origin}}</span>
