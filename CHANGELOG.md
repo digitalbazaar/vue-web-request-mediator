@@ -1,5 +1,11 @@
 # vue-web-request-mediator ChangeLog
 
+## 1.2.3 - 2018-10-14
+
+### Changed
+- Add `only` to screen media queries.
+- Map classic modal CSS vars to modern ones.
+
 ## 1.2.2 - 2018-10-14
 
 ### Changed
