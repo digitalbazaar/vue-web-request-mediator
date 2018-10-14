@@ -1,5 +1,9 @@
 # vue-web-request-mediator ChangeLog
 
+### Changed
+- Use percentages instead of viewport units for fixed
+  positioned elements.
+
 ## 1.2.0 - 2018-10-12
 
 ### Changed
