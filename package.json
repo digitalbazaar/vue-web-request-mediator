@@ -1,6 +1,6 @@
 {
   "name": "vue-web-request-mediator",
-  "version": "1.2.2",
+  "version": "1.2.3-0",
   "description": "Vue Web Request Mediator Components",
   "main": "index.js",
   "less": "main.less",
