@@ -1,5 +1,7 @@
 # vue-web-request-mediator ChangeLog
 
+## 1.2.2 - 2018-10-14
+
 ### Changed
 - Modernize default permission dialog.
 
