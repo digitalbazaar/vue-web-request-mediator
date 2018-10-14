@@ -13,9 +13,9 @@
 @wrm-modern-separator-color: #dfdfdf;
 
 @wrm-modal-font-size: 12px;
-@wrm-modal-background: #ddd;
+@wrm-modal-background: @wrm-modal-modern-background;
 @wrm-modal-modern-background: #f9f9f9;
-@wrm-modal-border-color: rgba(150, 150, 150, 0.3);
+@wrm-modal-border-color: @wrm-modal-modern-border-color;
 @wrm-modal-modern-border-color: rgba(221, 221, 221, 0.75);
 @wrm-modal-modern-width: 400px;
 @wrm-modal-padding: 15px;
@@ -113,7 +113,7 @@ div.wrm-modal {
 .wrm-modal-content {
   background: @wrm-modal-modern-background;
   background-clip: padding-box;
-  border: 1px solid @wrm-modal-border-color;
+  border: 1px solid @wrm-modal-modern-border-color;
   border-radius: 3px;
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
   color: @wrm-text-color;
@@ -142,20 +142,12 @@ div.wrm-modal {
   @media screen and (min-width: @wrm-modal-large-screen) {
     /* dialog appearance */
     margin-top: -1px;
-    border: 1px solid @wrm-modal-modern-border-color;
     border-radius: 0 0 3px 3px;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
     width: 300px;
     &.wrm-modern {
       width: @wrm-modal-modern-width;
     }
-  }
-  /* mobile */
-  @media screen and (-webkit-min-device-pixel-ratio: 2),
-    screen and (-webkit-min-device-pixel-ratio: 3),
-    screen and (-webkit-min-device-pixel-ratio: 4) {
-    border: 1px solid @wrm-modal-modern-border-color;
-    background: @wrm-modal-modern-background;
   }
 }
 
