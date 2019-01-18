@@ -14,6 +14,8 @@ export function install(Vue, options) {
   Vue.component(
     'wrm-checkbox', () => import('./WrmCheckbox.vue'));
   Vue.component(
+    'wrm-header-back-button', () => import('./WrmHeaderBackButton.vue'));
+  Vue.component(
     'wrm-header-close-button', () => import('./WrmHeaderCloseButton.vue'));
   Vue.component(
     'wrm-hint-chooser', () => import('./WrmHintChooser.vue'));
@@ -27,4 +29,6 @@ export function install(Vue, options) {
     'wrm-origin-name', () => import('./WrmOriginName.vue'));
   Vue.component(
     'wrm-permission-dialog', () => import('./WrmPermissionDialog.vue'));
+  Vue.component(
+    'wrm-wizard-dialog', () => import('./WrmWizardDialog.vue'));
 }

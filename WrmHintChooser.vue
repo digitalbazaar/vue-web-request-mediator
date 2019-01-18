@@ -1,77 +1,65 @@
 <template>
-  <div class="wrm-modal">
-    <div class="wrm-modal-content wrm-modern">
-      <div class="wrm-flex-row wrm-modal-content-header wrm-modern">
-        <div
-          class="wrm-flex-item-grow"
-          style="padding: 0 15px; overflow: hidden">
-          <slot name="header"></slot>
-        </div>
-        <wrm-header-close-button
-          style="padding-right: 5px"
-          @click.native="close()" />
+  <div>
+    <div v-if="display === 'list'" class="wrm-slide">
+      <div class="wrm-heading" style="padding: 2px 0">Choose an option</div>
+      <wrm-hint-list
+        :hints="hints"
+        :default-hint-icon="defaultHintIcon"
+        @select="select" />
+    </div>
+    <div v-else-if="display === 'overview'" class="wrm-slide">
+      <slot name="message"></slot>
+      <!-- confirm button ON and at least one choice-->
+      <div v-if="confirmButton && hints.length > 0"
+        @click="!confirming && (display = 'list')">
+        <wrm-hint
+          :hint="selectedHint || hints[0]"
+          :default-icon="defaultHintIcon"
+          :active="confirming"
+          :selected="false"
+          :selectable="true"
+          :disabled="false" />
       </div>
-      <div v-if="display === 'list'" class="wrm-slide">
-        <div class="wrm-heading" style="padding: 2px 0">Choose an option</div>
+      <!-- confirm button ON, no choices, but needs storage access to
+        retrieve hints -->
+      <div v-else-if="confirmButton && needsStorageAccess"
+        @click="!confirming && requestStorageAccess()">
+        <div class="wrm-flex-item">
+          <div
+            style="margin-top: 5px"
+            class="wrm-flex-row wrm-item wrm-flex-item-grow wrm-selectable">
+            <h6 class="wrm-flex-item">Choose an option</h6>
+            <div class="wrm-flex-item wrm-flex-item-grow"></div>
+            <h6><i class="wrm-flex-item fas fa-chevron-right"></i></h6>
+          </div>
+        </div>
+      </div>
+      <!-- confirm button OFF; selection integrated -->
+      <div v-else-if="!confirmButton && hints.length > 0"
+        class="wrm-flex-column-stretch">
         <wrm-hint-list
           :hints="hints"
           :default-hint-icon="defaultHintIcon"
-          @select="select" />
+          activate-on-select
+          @select="confirm" />
       </div>
-      <div v-else-if="display === 'overview'" class="wrm-slide">
-        <slot name="message"></slot>
-        <!-- confirm button ON and at least one choice-->
-        <div v-if="confirmButton && hints.length > 0"
-          @click="!confirming && (display = 'list')">
-          <wrm-hint
-            :hint="selectedHint || hints[0]"
-            :default-icon="defaultHintIcon"
-            :active="confirming"
-            :selected="false"
-            :selectable="true"
-            :disabled="false" />
-        </div>
-        <!-- confirm button ON, no choices, but needs storage access to
-          retrieve hints -->
-        <div v-else-if="confirmButton && needsStorageAccess"
-          @click="!confirming && requestStorageAccess()">
-          <div class="wrm-flex-item">
-            <div
-              style="margin-top: 5px"
-              class="wrm-flex-row wrm-item wrm-flex-item-grow wrm-selectable">
-              <h6 class="wrm-flex-item">Choose an option</h6>
-              <div class="wrm-flex-item wrm-flex-item-grow"></div>
-              <h6><i class="wrm-flex-item fas fa-chevron-right"></i></h6>
-            </div>
-          </div>
-        </div>
-        <!-- confirm button OFF; selection integrated -->
-        <div v-else-if="!confirmButton && hints.length > 0"
-          class="wrm-flex-column-stretch">
-          <wrm-hint-list
-            :hints="hints"
-            :default-hint-icon="defaultHintIcon"
-            activate-on-select
-            @select="confirm" />
-        </div>
-        <slot name="hint-list-footer"></slot>
-        <div v-if="confirmButton"
-          class="wrm-button-bar" style="margin-top: 10px">
-          <button type="button" class="wrm-button"
-            :disabled="confirming"
-            @click="onCancel()">
-            Cancel
-          </button>
-          <button
-            style="margin-left: 5px"
-            :disabled="confirming || hints.length === 0"
-            @click="confirm({hint: selectedHint, waitUntil: () => {}})"
-            type="button" class="wrm-button wrm-primary">
-            {{confirmButtonText}}
-          </button>
-        </div>
-        <slot name="footer"></slot>
+      <slot name="hint-list-footer"></slot>
+      <div v-if="confirmButton"
+        class="wrm-button-bar" style="margin-top: 10px">
+        <button type="button" class="wrm-button"
+          :disabled="confirming"
+          @click="onCancel()">
+          Cancel
+        </button>
+        <button
+          style="margin-left: 5px"
+          :disabled="confirming || hints.length === 0"
+          @click="confirm({hint: selectedHint, waitUntil: () => {}})"
+          type="button" class="wrm-button wrm-primary">
+          {{confirmButtonText}}
+        </button>
       </div>
+      <slot name="footer"></slot>
     </div>
   </div>
 </template>

@@ -6,7 +6,7 @@
       :manifest="manifest"
       style="padding-right: 10px" />
     <div class="wrm-flex-item-grow wrm-ellipsis">
-      <wrm-origin-name
+      <wrm-origin-name v-if="manifest"
         :origin="origin"
         :manifest="manifest"
         class="wrm-flex-item-grow"

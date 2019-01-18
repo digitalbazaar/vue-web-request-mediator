@@ -45,6 +45,12 @@
 @wrm-header-close-x-right: (
   unit(@wrm-header-close-button-width) - @wrm-header-close-x-left);
 @wrm-header-close-x-stroke-width: 2.5;
+@wrm-header-arrowhead-y-middle: (unit(@wrm-header-close-button-size) / 2);
+@wrm-header-arrowhead-x-left: (@wrm-header-close-x-left - 1);
+@wrm-header-arrowhead-x-right: (
+  unit(@wrm-header-close-button-width) - @wrm-header-close-x-left + 5px);
+@wrm-header-arrow-x-right: (
+  unit(@wrm-header-close-button-width) - 2.5);
 
 @wrm-handler-header-height: 65px;
 
@@ -202,6 +208,58 @@ div.wrm-modal {
   }
 }
 
+.wrm-header-back-button {
+  cursor: pointer;
+  display: block;
+  margin: -11px 0 -14px 0;
+
+  div {
+    display: inline-block;
+    float: right;
+  }
+
+  svg {
+    height: @wrm-header-close-button-height;
+    width: @wrm-header-close-button-width;
+
+    rect {
+      visibility: hidden;
+      fill: darken(@wrm-modal-modern-background, 5%);
+    }
+
+    circle {
+      visibility: hidden;
+      fill: darken(@wrm-modal-modern-background, 5%);
+    }
+
+    path {
+      fill: none;
+      stroke: #777;
+      stroke-width: @wrm-header-close-x-stroke-width;
+    }
+
+    /* non-iOS device detection (only :hover on non-iOS) */
+    @supports not (-webkit-overflow-scrolling: touch) {
+      &:hover {
+        rect {
+          visibility: visible;
+          fill: darken(@wrm-modal-modern-background, 5%);
+        }
+      }
+    }
+
+    &:active {
+      rect {
+        visibility: hidden;
+      }
+      circle {
+        visibility: visible;
+      }
+      overflow: visible;
+    }
+  }
+}
+
 .wrm-header-close-button {
   cursor: pointer;
   display: block;
@@ -216,17 +274,40 @@ div.wrm-modal {
     height: @wrm-header-close-button-height;
     width: @wrm-header-close-button-width;
 
-    path:nth-of-type(1) {
-      d: path('M@{wrm-header-close-x-left}, @{wrm-header-close-x-left}, @{wrm-header-close-x-right}, @{wrm-header-close-x-right}')
+    circle {
+      visibility: hidden;
+      fill: darken(@wrm-modal-modern-background, 5%);
     }
-    path:nth-of-type(2) {
-      d: path('M@{wrm-header-close-x-left}, @{wrm-header-close-x-right}, @{wrm-header-close-x-right}, @{wrm-header-close-x-left}')
+
+    rect {
+      visibility: hidden;
+      fill: darken(@wrm-modal-modern-background, 5%);
     }
 
     path {
       fill: none;
       stroke: #777;
       stroke-width: @wrm-header-close-x-stroke-width;
+    }
+
+    /* non-iOS device detection (only :hover on non-iOS) */
+    @supports not (-webkit-overflow-scrolling: touch) {
+      &:hover {
+        rect {
+          visibility: visible;
+          fill: darken(@wrm-modal-modern-background, 5%);
+        }
+      }
+    }
+
+    &:active {
+      rect {
+        visibility: hidden;
+      }
+      circle {
+        visibility: visible;
+      }
+      overflow: visible;
     }
   }
 }
