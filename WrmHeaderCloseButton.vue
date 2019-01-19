@@ -3,7 +3,6 @@
     <div>
       <svg>
         <circle cx="12.5" cy="12.5" r="18" />
-        <rect x="1" y="1" width="23" height="23" rx="2" ry="2" />
         <path d="M6.5, 6.5, 18.5, 18.5" />
         <path d="M6.5, 18.5, 18.5, 6.5" />
       </svg>

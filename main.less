@@ -212,6 +212,7 @@ div.wrm-modal {
   cursor: pointer;
   display: block;
   margin: -11px 0 -14px 0;
+  position: relative;
 
   div {
     display: inline-block;
@@ -221,11 +222,6 @@ div.wrm-modal {
   svg {
     height: @wrm-header-close-button-height;
     width: @wrm-header-close-button-width;
-
-    rect {
-      visibility: hidden;
-      fill: darken(@wrm-modal-modern-background, 5%);
-    }
 
     circle {
       visibility: hidden;
@@ -241,22 +237,38 @@ div.wrm-modal {
     /* non-iOS device detection (only :hover on non-iOS) */
     @supports not (-webkit-overflow-scrolling: touch) {
       &:hover {
-        rect {
+        circle {
           visibility: visible;
-          fill: darken(@wrm-modal-modern-background, 5%);
         }
+        overflow: visible;
       }
     }
 
     &:active {
-      rect {
-        visibility: hidden;
-      }
       circle {
         visibility: visible;
       }
       overflow: visible;
     }
+  }
+
+  &:active {
+    &:after {
+      animation: wrm-ripple 0.5s ease-out;
+    }
+  }
+
+  &:after {
+    content: '';
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .2);
+    position: absolute;
+    box-sizing: border-box;
+    left: 16px;
+    top: 12px;
+    transform: scale(0);
+    width: 2px;
+    height: 2px;
   }
 }
 
@@ -264,6 +276,7 @@ div.wrm-modal {
   cursor: pointer;
   display: block;
   margin: -11px 0 -14px 0;
+  position: relative;
 
   div {
     display: inline-block;
@@ -279,11 +292,6 @@ div.wrm-modal {
       fill: darken(@wrm-modal-modern-background, 5%);
     }
 
-    rect {
-      visibility: hidden;
-      fill: darken(@wrm-modal-modern-background, 5%);
-    }
-
     path {
       fill: none;
       stroke: #777;
@@ -293,22 +301,38 @@ div.wrm-modal {
     /* non-iOS device detection (only :hover on non-iOS) */
     @supports not (-webkit-overflow-scrolling: touch) {
       &:hover {
-        rect {
+        circle {
           visibility: visible;
-          fill: darken(@wrm-modal-modern-background, 5%);
         }
+        overflow: visible;
       }
     }
 
     &:active {
-      rect {
-        visibility: hidden;
-      }
       circle {
         visibility: visible;
       }
       overflow: visible;
     }
+  }
+
+  &:active {
+    &:after {
+      animation: wrm-ripple 0.5s ease-out;
+    }
+  }
+
+  &:after {
+    content: '';
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .2);
+    position: absolute;
+    box-sizing: border-box;
+    left: 12px;
+    top: 12px;
+    transform: scale(0);
+    width: 2px;
+    height: 2px;
   }
 }
 
