@@ -3,8 +3,10 @@
     :class="checkboxClass"
     :style="checkboxStyle">
     <label>
-      <input type="checkbox" :checked="value" @input="toggle">
-      <span class="wrm-label" :class="labelClass">{{label}}</span>
+      <input type="checkbox" :checked="value" :disabled="disabled"
+        :style="checkboxStyle" @input="toggle">
+      <span class="wrm-label" :class="labelClass"
+        :style="labelStyle">{{label}}</span>
     </label>
   </div>
 </template>
@@ -27,11 +29,19 @@ export default {
       type: String,
       required: false
     },
+    disabled: {
+      type: Boolean,
+      required: false
+    },
     label: {
       type: String,
       required: false
     },
     labelClass: {
+      type: String,
+      required: false
+    },
+    labelStyle: {
       type: String,
       required: false
     },
