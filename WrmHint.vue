@@ -8,7 +8,7 @@
       class="wrm-flex-item">
     <div style="margin-left: 10px; margin-top: 3px"
       class="wrm-flex-item-grow wrm-ellipsis">
-      <strong>{{hint.name}}</strong>
+      <strong style="font-size: 14px">{{hint.name}}</strong>
       <wrm-origin :origin="hint.origin" />
       <wrm-activity-bar v-if="active" style="margin-top: 1px" />
       <!-- ensure same spacing whether activity bar is present or not -->

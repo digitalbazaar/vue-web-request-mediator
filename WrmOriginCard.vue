@@ -10,7 +10,7 @@
         :origin="origin"
         :manifest="manifest"
         class="wrm-flex-item-grow"
-        style="padding-bottom: 2px">
+        style="padding-bottom: 2px; font-size: 14px">
         <template slot="task">
           <slot name="task"></slot>
         </template>
