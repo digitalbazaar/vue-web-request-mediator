@@ -1,5 +1,23 @@
 # vue-web-request-mediator ChangeLog
 
+## 2.0.0 - TBD
+
+### Added
+- Add `WrmWizardDialog` for building simple wizards such as those that will
+  enable first party storage access from third party contexts.
+- Add `WrmHeaderBackButton`.
+
+### Changed
+- **BREAKING**: Remove dialog from hint chooser; hint chooser must now be
+  embedded in a dialog or other UI component.
+- Various CSS/appearance changes.
+
+### Removed
+- **BREAKING**: Remove `requestStorageAccess` wrapper function. If needed, get
+  it from `web-request-mediator` 1.1.x.
+- **BREAKING**: Remove `load-hints` and storage access handling code from
+  hint chooser.
+
 ## 1.2.3 - 2018-10-14
 
 ### Changed

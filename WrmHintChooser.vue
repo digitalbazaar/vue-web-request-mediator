@@ -20,20 +20,6 @@
           :selectable="true"
           :disabled="false" />
       </div>
-      <!-- confirm button ON, no choices, but needs storage access to
-        retrieve hints -->
-      <div v-else-if="confirmButton && needsStorageAccess"
-        @click="!confirming && requestStorageAccess()">
-        <div class="wrm-flex-item">
-          <div
-            style="margin-top: 5px"
-            class="wrm-flex-row wrm-item wrm-flex-item-grow wrm-selectable">
-            <h6 class="wrm-flex-item">Choose an option</h6>
-            <div class="wrm-flex-item wrm-flex-item-grow"></div>
-            <h6><i class="wrm-flex-item fas fa-chevron-right"></i></h6>
-          </div>
-        </div>
-      </div>
       <!-- confirm button OFF; selection integrated -->
       <div v-else-if="!confirmButton && hints.length > 0"
         class="wrm-flex-column-stretch">
@@ -74,7 +60,6 @@
 import WrmCloseButton from './WrmCloseButton.vue';
 import WrmHint from './WrmHint.vue';
 import WrmHintList from './WrmHintList.vue';
-import {requestStorageAccess} from './storageAccess.js';
 
 export default {
   name: 'WrmHintChooser',
@@ -88,12 +73,6 @@ export default {
       }
     };
     document.addEventListener('keydown', this._listener);
-
-    if(typeof document.hasStorageAccess === 'function') {
-      this.needsStorageAccess = !await document.hasStorageAccess();
-    } else {
-      this.needsStorageAccess = false;
-    }
   },
   destroyed() {
     document.removeEventListener('keydown', this._listener);
@@ -120,7 +99,6 @@ export default {
     return {
       display: 'overview',
       confirming: false,
-      needsStorageAccess: false,
       selectedHint: null
     };
   },
@@ -131,21 +109,6 @@ export default {
         return;
       }
       this.onCancel();
-    },
-    async requestStorageAccess() {
-      const self = this;
-      await requestStorageAccess();
-      this.needsStorageAccess = false;
-      let promise = Promise.resolve();
-      this.$emit('load-hints', {
-        waitUntil: p => promise = p
-      });
-      try {
-        await promise;
-        if(this.hints.length > 0) {
-          self.display = 'list';
-        }
-      } catch(e) {}
     },
     select(event) {
       this.selectedHint = event.hint;

@@ -33,7 +33,7 @@
 'use strict';
 
 import WrmCloseButton from './WrmCloseButton.vue';
-import {requestStorageAccess} from './storageAccess.js';
+import {requestStorageAccess} from 'web-request-mediator';
 
 export default {
   name: 'WrmPermissionDialog',
@@ -63,6 +63,7 @@ export default {
   },
   methods: {
     async onAllow() {
+      // FIXME: this should be called prior to using this dialog?
       await requestStorageAccess();
       this.$emit('allow');
     },
