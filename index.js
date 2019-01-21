@@ -17,6 +17,8 @@ export function install(Vue, options) {
   Vue.component(
     'wrm-header-close-button', () => import('./WrmHeaderCloseButton.vue'));
   Vue.component(
+    'wrm-hint', () => import('./WrmHint.vue'));
+  Vue.component(
     'wrm-hint-chooser', () => import('./WrmHintChooser.vue'));
   Vue.component(
     'wrm-origin', () => import('./WrmOrigin.vue'));
