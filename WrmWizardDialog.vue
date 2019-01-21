@@ -68,7 +68,9 @@ export default {
   },
   mounted() {
     // focus on next button to allow `Escape` to function properly
-    this.$refs.next.focus();
+    if(this.$refs.next) {
+      this.$refs.next.focus();
+    }
   },
   props: {
     loading: {
