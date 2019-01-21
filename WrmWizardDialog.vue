@@ -12,7 +12,8 @@
         </div>
         <wrm-header-close-button
           style="padding-right: 5px"
-          @click.native="onCancel()" />
+          @click.native="onCancel()"
+          ref="close" />
       </div>
       <div>
         <slot name="body"></slot>
@@ -35,7 +36,8 @@
           <button type="button" class="wrm-button wrm-primary" v-else
             style="margin-left: 5px"
             :disabled="loading || blocked"
-            @click="onFinish()">
+            @click="onFinish()"
+            ref="finish">
             Finish
           </button>
         </div>
@@ -67,9 +69,10 @@ export default {
     document.removeEventListener('keydown', this._listener);
   },
   mounted() {
-    // focus on next button to allow `Escape` to function properly
-    if(this.$refs.next) {
-      this.$refs.next.focus();
+    // focus on a button to allow `Escape` to function properly
+    const button = this.$refs.next || this.$refs.finish || this.$refs.close;
+    if(button) {
+      button.focus();
     }
   },
   props: {
