@@ -1,6 +1,6 @@
 # vue-web-request-mediator ChangeLog
 
-## 2.1.0 - TBD
+## 2.1.0 - 2019-01-21
 
 ### Added
 - Expose `WrmHint` component.
