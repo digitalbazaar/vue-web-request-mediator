@@ -1,6 +1,6 @@
 # vue-web-request-mediator ChangeLog
 
-## 2.0.0 - TBD
+## 2.0.0 - 2019-01-21
 
 ### Added
 - Add `WrmWizardDialog` for building simple wizards such as those that will
