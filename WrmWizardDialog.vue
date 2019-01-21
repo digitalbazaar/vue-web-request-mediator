@@ -28,7 +28,8 @@
           <button type="button" class="wrm-button wrm-primary" v-if="hasNext"
             style="margin-left: 5px"
             :disabled="loading || blocked"
-            @click="onNext()">
+            @click="onNext()"
+            ref="next">
             Next
           </button>
           <button type="button" class="wrm-button wrm-primary" v-else
@@ -53,6 +54,22 @@
 export default {
   name: 'WrmWizardDialog',
   components: {},
+  async created() {
+    this._listener = event => {
+      if(event.key === 'Escape') {
+        event.preventDefault();
+        this.onCancel();
+      }
+    };
+    document.addEventListener('keydown', this._listener);
+  },
+  destroyed() {
+    document.removeEventListener('keydown', this._listener);
+  },
+  mounted() {
+    // focus on next button to allow `Escape` to function properly
+    this.$refs.next.focus();
+  },
   props: {
     loading: {
       type: Boolean,
