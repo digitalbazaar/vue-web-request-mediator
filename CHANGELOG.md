@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 2.1.1 - 2019-01-22
+
+### Fixed
+- Remove additional `requestStorageAccess` call.
+
 ## 2.1.0 - 2019-01-21
 
 ### Added
