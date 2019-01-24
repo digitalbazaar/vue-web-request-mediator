@@ -3,15 +3,13 @@
     <div class="wrm-modal-content wrm-modern">
       <div class="wrm-flex-row wrm-modal-content-header wrm-modern">
         <wrm-header-back-button v-if="!first"
-          style="padding-left: 5px; padding-right: 5px"
           @click.native="onBack()" />
         <div
           class="wrm-flex-item-grow"
-          style="padding: 0 15px; overflow: hidden; height: 30px">
+          style="padding: 0 15px; overflow: hidden;">
           <slot name="header"></slot>
         </div>
         <wrm-header-close-button
-          style="padding-right: 5px"
           @click.native="onCancel()"
           ref="close" />
       </div>

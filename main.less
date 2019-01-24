@@ -12,7 +12,7 @@
 @wrm-separator-color: #ccc;
 @wrm-modern-separator-color: #dfdfdf;
 
-@wrm-modal-font-size: 12px;
+@wrm-modal-font-size: 14px;
 @wrm-modal-background: @wrm-modal-modern-background;
 @wrm-modal-modern-background: #f9f9f9;
 @wrm-modal-border-color: @wrm-modal-modern-border-color;
@@ -105,7 +105,7 @@ div.wrm-modal {
 
   @media only screen and (max-width: @wrm-modal-small-screen) {
     /* full screen appearance */
-    height: 100%;
+    height: calc(100% - 15px);
     justify-content: flex-end;
     padding-bottom: 0;
   }
@@ -120,7 +120,7 @@ div.wrm-modal {
   background: @wrm-modal-modern-background;
   background-clip: padding-box;
   border: 1px solid @wrm-modal-modern-border-color;
-  border-radius: 3px;
+  border-radius: 5px;
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
   color: @wrm-text-color;
   display: flex;
@@ -142,13 +142,13 @@ div.wrm-modal {
     width: calc(100% - @wrm-modal-padding-x);
     border: none;
     border-top: 1px solid @wrm-modal-modern-border-color;
-    border-radius: 0;
+    border-radius: 5px;
     box-shadow: none;
   }
   @media only screen and (min-width: @wrm-modal-large-screen) {
     /* dialog appearance */
     margin-top: -1px;
-    border-radius: 0 0 3px 3px;
+    border-radius: 0 0 5px 5px;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
     width: 300px;
     &.wrm-modern {
@@ -211,8 +211,9 @@ div.wrm-modal {
 .wrm-header-back-button {
   cursor: pointer;
   display: block;
-  margin: -11px 0 -14px 0;
+  margin: -5px 0 -10px 0;
   position: relative;
+  padding: 10px;
 
   div {
     display: inline-block;
@@ -275,7 +276,8 @@ div.wrm-modal {
 .wrm-header-close-button {
   cursor: pointer;
   display: block;
-  margin: -11px 0 -14px 0;
+  margin: -5px 0 -10px 0;
+  padding: 10px;
   position: relative;
 
   div {
