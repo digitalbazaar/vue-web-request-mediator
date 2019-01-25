@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 2.1.2 - 2019-01-25
+
+### Changed
+- Minor CSS improvements and UI adjustments.
+
 ## 2.1.1 - 2019-01-22
 
 ### Fixed
