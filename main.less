@@ -12,7 +12,7 @@
 @wrm-separator-color: #ccc;
 @wrm-modern-separator-color: #dfdfdf;
 
-@wrm-modal-font-size: 12px;
+@wrm-modal-font-size: 14px;
 @wrm-modal-background: @wrm-modal-modern-background;
 @wrm-modal-modern-background: #f9f9f9;
 @wrm-modal-border-color: @wrm-modal-modern-border-color;
@@ -142,7 +142,7 @@ div.wrm-modal {
     width: calc(100% - @wrm-modal-padding-x);
     border: none;
     border-top: 1px solid @wrm-modal-modern-border-color;
-    border-radius: 0;
+    border-radius: 3px 3px 0 0;
     box-shadow: none;
   }
   @media only screen and (min-width: @wrm-modal-large-screen) {
@@ -211,8 +211,9 @@ div.wrm-modal {
 .wrm-header-back-button {
   cursor: pointer;
   display: block;
-  margin: -11px 0 -14px 0;
+  margin: -5px 0 -10px 0;
   position: relative;
+  padding: 10px;
 
   div {
     display: inline-block;
@@ -264,8 +265,8 @@ div.wrm-modal {
     background-color: rgba(0, 0, 0, .2);
     position: absolute;
     box-sizing: border-box;
-    left: 16px;
-    top: 12px;
+    left: 21px;
+    top: 21px;
     transform: scale(0);
     width: 2px;
     height: 2px;
@@ -275,7 +276,8 @@ div.wrm-modal {
 .wrm-header-close-button {
   cursor: pointer;
   display: block;
-  margin: -11px 0 -14px 0;
+  margin: -5px 0 -10px 0;
+  padding: 10px;
   position: relative;
 
   div {
@@ -328,8 +330,8 @@ div.wrm-modal {
     background-color: rgba(0, 0, 0, .2);
     position: absolute;
     box-sizing: border-box;
-    left: 12px;
-    top: 12px;
+    left: 21px;
+    top: 21px;
     transform: scale(0);
     width: 2px;
     height: 2px;
@@ -339,7 +341,10 @@ div.wrm-modal {
 .wrm-close-button {
   cursor: pointer;
   display: block;
-  margin: -7px -7px -14px -7px;
+  padding: 10px;
+  position: absolute;
+  right: 0px;
+  top: 0;
 
   div {
     display: inline-block;
@@ -350,24 +355,15 @@ div.wrm-modal {
     height: @wrm-close-button-height;
     width: @wrm-close-button-width;
 
-    path:nth-of-type(1) {
-      d: path('M@{wrm-close-x-left}, @{wrm-close-x-left}, @{wrm-close-x-right}, @{wrm-close-x-right}')
-    }
-    path:nth-of-type(2) {
-      d: path('M@{wrm-close-x-left}, @{wrm-close-x-right}, @{wrm-close-x-right}, @{wrm-close-x-left}')
-    }
-
     circle {
       visibility: hidden;
-      cx: (unit(@wrm-close-button-width) / 2);
-      cy: (unit(@wrm-close-button-height) / 2);
-      r: (unit(@wrm-close-button-width) / 2 - 1);
-      stroke-width: 1;
+      fill: darken(@wrm-modal-modern-background, 5%);
     }
+
     path {
       fill: none;
       stroke: #777;
-      stroke-width: @wrm-close-x-stroke-width;
+      stroke-width: @wrm-header-close-x-stroke-width;
     }
 
     /* non-iOS device detection (only :hover on non-iOS) */
@@ -375,48 +371,36 @@ div.wrm-modal {
       &:hover {
         circle {
           visibility: visible;
-          stroke: #777;
-          fill: #777;
         }
-        path {
-          stroke: @wrm-modal-background;
-        }
+        overflow: visible;
       }
     }
 
     &:active {
       circle {
         visibility: visible;
-        stroke: #000;
-        fill: #000;
       }
-      path {
-        stroke: @wrm-modal-background;
-      }
+      overflow: visible;
     }
   }
 
-  &[disabled], &:disabled {
-    cursor: default;
-    pointer-events: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    svg {
-      /* non-iOS device detection (only :hover on non-iOS) */
-      @supports not (-webkit-overflow-scrolling: touch) {
-        &:hover {
-          circle {
-            visibility: hidden;
-          }
-          path {
-            stroke: @wrm-modal-background;
-          }
-        }
-      }
+  &:active {
+    &:after {
+      animation: wrm-ripple-small 0.5s ease-out;
     }
+  }
+
+  &:after {
+    content: '';
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .2);
+    position: absolute;
+    box-sizing: border-box;
+    left: 19px;
+    top: 18px;
+    transform: scale(0);
+    width: 2px;
+    height: 2px;
   }
 }
 
@@ -671,6 +655,21 @@ div.wrm-modal {
   100% {
     opacity: 0;
     transform: scale(20, 20);
+  }
+}
+
+@keyframes wrm-ripple-small {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(7, 7);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(14, 14);
   }
 }
 

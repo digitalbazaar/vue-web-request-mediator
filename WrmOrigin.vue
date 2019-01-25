@@ -3,7 +3,7 @@
     class="wrm-flex-row"
     style="justify-content: flex-start; font-weight: bold">
     <i class="fas fa-lock wrm-flex-item wrm-green"
-      style="padding-right: 2px"></i>
+      style="padding-right: 6px"></i>
     <span v-if="domain">
       <!-- span class="wrm-green">https</span><span class="wrm-dark-gray">://{{domain}}</span -->
       <span class="wrm-dark-gray">{{domain}}</span>
