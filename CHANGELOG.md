@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 2.1.3 - 2019-02-01
+
+### Fixed
+- Fix repo tags.
+
 ## 2.1.2 - 2019-01-25
 
 ### Changed
