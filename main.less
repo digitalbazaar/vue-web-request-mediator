@@ -520,7 +520,7 @@ div.wrm-modal {
       top: @wrm-handler-header-height;
       width: 100%;
       @media only screen and (max-width: @wrm-modal-small-screen) {
-        /* full screen appearance */
+        /* full screen appearance for small screens */
         max-height: calc(100% - @wrm-handler-header-height);
         border: none;
         border-radius: none;
@@ -530,10 +530,10 @@ div.wrm-modal {
       }
       @media only screen and (max-width: 600px) {
         /* due to IE11 fix required to center iframe below */
-        left: 0;
+        left: 0 !important;
       }
       @media only screen and (min-width: @wrm-modal-large-screen) {
-        /* dialog appearance */
+        /* dialog appearance for large screens */
         max-height: 400px;
         /* IE11 fix to center iframe */
         left: calc(50% - 300px);

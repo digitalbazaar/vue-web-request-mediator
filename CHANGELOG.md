@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 2.1.5 - 2019-06-xx
+
+### Fixed
+- Use CSS hack to fix IE11.
+
 ## 2.1.4 - 2019-06-07
 
 ### Fixed
