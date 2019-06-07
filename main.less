@@ -525,10 +525,18 @@ div.wrm-modal {
         border: none;
         border-radius: none;
         box-shadow: none;
+        /* due to IE11 fix required to center iframe below */
+        left: 0;
+      }
+      @media only screen and (max-width: 600px) {
+        /* due to IE11 fix required to center iframe below */
+        left: 0;
       }
       @media only screen and (min-width: @wrm-modal-large-screen) {
         /* dialog appearance */
         max-height: 400px;
+        /* IE11 fix to center iframe */
+        left: calc(50% - 300px);
       }
     }
   }
