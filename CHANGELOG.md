@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 2.2.0 - 2019-10-01
+
+### Added
+- Add CSS support for dark mode themes.
+
 ## 2.1.5 - 2019-06-07
 
 ### Fixed
