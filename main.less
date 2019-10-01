@@ -460,7 +460,7 @@ div.wrm-modal {
     }
   }
 
-  &:active, &:focus, {
+  &:active, &:focus {
     outline: none;
     border-color: @wrm-active-border-color;
   }
@@ -705,6 +705,34 @@ div.wrm-modal {
   height: 100%;
   width: 100%;
   position: absolute;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .wrm-modal-content {
+      background-color: #1d1d1d;
+      color: #fff;
+      border: 1px solid #121212;
+  }
+  .wrm-modal-content-header {
+    border-bottom: 1px solid #121212;
+  }
+  .wrm-button {
+    border: 1px solid #1d1d1d;
+    box-shadow: inset 0px 11px 1px -10px rgba(0, 0, 0, 0.75)
+  }
+  .wrm-item {
+    background-color: #282828;
+    border-bottom-color: #121212;
+  }
+  .wrm-separator {
+    border-top: 1px solid #121212;
+  }
+  .wrm-panel {
+    color: #fff;
+    background-color: #1d1d1d;
+    border: 1px solid #121212;
+  }
 }
 
 /*.wrm-slide.ng-enter,
