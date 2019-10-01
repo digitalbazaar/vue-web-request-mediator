@@ -460,7 +460,7 @@ div.wrm-modal {
     }
   }
 
-  &:active, &:focus, {
+  &:active, &:focus {
     outline: none;
     border-color: @wrm-active-border-color;
   }
@@ -713,6 +713,94 @@ div.wrm-modal {
   height: 100%;
   width: 100%;
   position: absolute;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .wrm-modal-content {
+      background-color: #282828;
+      color: #d9d9d9;
+      border: 1px solid #54585d;
+  }
+  .wrm-modal-content-header {
+    border-bottom: 1px solid #54585d;
+  }
+  .wrm-button {
+    color: #7fabf7;
+    border: 1px solid #54585d;
+    background-color: #282828;
+    box-shadow: none;
+
+    &.wrm-primary {
+      color: #7fabf7;
+      background-color: #282828;
+
+      /* non-iOS device detection (only :hover on non-iOS) */
+      @supports not (-webkit-overflow-scrolling: touch) {
+        &:hover:not(:disabled) {
+          border-color: #54585d;
+          background-color: #2b2d33;
+        }
+      }
+    }
+
+    /* non-iOS device detection (only :hover on non-iOS) */
+    @supports not (-webkit-overflow-scrolling: touch) {
+      &:hover:not(:disabled) {
+        border-color: #54585d;
+        background-color: #2b2d33;
+      }
+    }
+  }
+  .wrm-item {
+    background-color: #353535;
+    border-bottom-color: #54585d;
+
+    &.wrm-selected {
+      border-color: #54585d;
+      background-color: #2b2d33;
+    }
+
+    &.wrm-selectable {
+      /* non-iOS device detection (only :hover on non-iOS) */
+      @supports not (-webkit-overflow-scrolling: touch) {
+        &:hover {
+          background-color: #3d3d40;
+          border: 1px solid #54585d !important;
+          box-shadow: none;
+          transition: none;
+        }
+      }
+    }
+  }
+  .wrm-separator {
+    border-top: 1px solid #54585d;
+  }
+  .wrm-panel {
+    color: #d9d9d9;
+    background-color: #282828;
+    border: 1px solid #54585d;
+  }
+  .wrm-flex-column {
+    background-color: #282828;
+    color: #d9d9d9;
+  }
+  .wrm-green {
+    color: #8f969c;
+  }
+  .wrm-dark-gray {
+    color: #d9d9d9;
+  }
+  .wrm-header-close-button svg path,
+  .wrm-header-back-button svg path,
+  .wrm-close-button svg path {
+    stroke: #d9d9d9;
+  }
+  .wrm-header-close-button svg circle,
+  .wrm-header-back-button svg circle,
+  .wrm-close-button svg circle {
+    fill: #3d3d40;
+  }
 }
 
 /*.wrm-slide.ng-enter,
