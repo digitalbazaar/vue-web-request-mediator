@@ -2,7 +2,7 @@
   <div :class="hintClass">
     <i v-if="!hint.icon"
       :class="[defaultIcon, 'fas wrm-flex-item']"
-      style="padding: 0 5px 0 5px; font-size: 48px"></i>
+      style="font-size: 48px"></i>
     <img v-if="hint.icon" :src="hint.icon.fetchedImage"
       style="width: 48px; min-width: 48px; max-height: 48px"
       class="wrm-flex-item">
