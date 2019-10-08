@@ -5,12 +5,15 @@
  */
 'use strict';
 
-export function getWebAppManifestIcon({manifest, origin, size}) {
+export function getWebAppManifestIcon({manifest, origin, size, theme}) {
   let best = null;
   // find largest square icon that is at least 48px wide
   if(manifest && manifest.icons) {
     for(const icon of manifest.icons) {
       try {
+        if(icon.theme_color !== theme) {
+          continue;
+        }
         const {sizes, src} = icon;
         if(typeof sizes === 'string' && typeof src === 'string') {
           let [x, y] = sizes.split('x');
