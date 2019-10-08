@@ -19,7 +19,13 @@ export function getWebAppManifestIcon({manifest, origin, size, theme}) {
   if(manifest && manifest.icons) {
     for(const icon of manifest.icons) {
       try {
-        if(icon.theme_color !== theme) {
+        if(!icon.theme_color) {
+          // icon has no theme and we already have a theme-matching icon
+          if(best && best.theme_color === theme) {
+            continue;
+          }
+        } else if(icon.theme_color !== theme) {
+          // icon has a theme that does not match, skip it
           continue;
         }
         const {sizes, src} = icon;
