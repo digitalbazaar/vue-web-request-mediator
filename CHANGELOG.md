@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 2.2.1 - 2019-10-08
+
+### Fixed
+- Properly select themed icon from web app manifest.
+
 ## 2.2.0 - 2019-10-01
 
 ### Added
