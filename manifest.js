@@ -7,6 +7,14 @@
 
 export function getWebAppManifestIcon({manifest, origin, size, theme}) {
   let best = null;
+  if(!theme) {
+    if(typeof window !== undefined &&
+      window.matchMedia('(prefers-color-scheme: dark)')) {
+      theme = 'dark';
+    } else {
+      theme = 'light';
+    }
+  }
   // find largest square icon that is at least 48px wide
   if(manifest && manifest.icons) {
     for(const icon of manifest.icons) {
