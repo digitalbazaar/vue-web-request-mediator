@@ -87,7 +87,7 @@ export default {
       required: true
     },
     blocked: {
-      type: Object,
+      type: Boolean,
       required: true
     }
   },
