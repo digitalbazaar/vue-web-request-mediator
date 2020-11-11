@@ -7,6 +7,8 @@
  */
 'use strict';
 
+import './main.less';
+
 export {getWebAppManifestIcon} from './manifest.js';
 
 export function install(Vue, options) {
