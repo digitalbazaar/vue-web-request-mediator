@@ -3,7 +3,6 @@
   "version": "2.2.2-0",
   "description": "Vue Web Request Mediator Components",
   "main": "index.js",
-  "less": "main.less",
   "peerDependencies": {
     "vue": "^2.5.16"
   },
