@@ -1,5 +1,7 @@
 # vue-web-request-mediator ChangeLog
 
+## 3.0.0 - 2020-11-13
+
 ### Changed
 - **BREAKING**: Load `main.less` with `import`. Usage of this package requires
   a suitable build system that can handle imported `less` files.
