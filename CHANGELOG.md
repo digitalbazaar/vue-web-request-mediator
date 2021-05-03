@@ -1,6 +1,6 @@
 # vue-web-request-mediator ChangeLog
 
-## 4.0.0 - 2021-05-xx
+## 4.0.0 - 2021-05-03
 
 ### Changed
 - **BREAKING**: Modify handler iframe CSS via wrm-handler-iframe class.
