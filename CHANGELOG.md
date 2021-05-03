@@ -1,6 +1,6 @@
 # vue-web-request-mediator ChangeLog
 
-## 4.0.2 - 2021-05-xx
+## 4.0.2 - 2021-05-03
 
 ### Changed
 - Improve selection hover border and animation.
