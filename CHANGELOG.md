@@ -1,5 +1,11 @@
 # vue-web-request-mediator ChangeLog
 
+## 4.0.0 - 2021-05-xx
+
+### Changed
+- **BREAKING**: Modify handler iframe CSS via wrm-handler-iframe class.
+- Use full screen for handler window.
+
 ## 3.0.0 - 2020-11-13
 
 ### Changed
