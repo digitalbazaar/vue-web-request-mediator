@@ -411,7 +411,6 @@ div.wrm-modal {
   background-color: @wrm-modal-modern-background;
   border: 1px solid #bbb;
   border-radius: 4px;
-  box-shadow: inset 0px 11px 1px -10px rgba(255, 255, 255, 0.75);
   box-sizing: border-box;
   color: #777;
   cursor: pointer;
@@ -444,6 +443,7 @@ div.wrm-modal {
       &:hover:not(:disabled) {
         border-color: darken(@wrm-primary, 5%);
         background-color: lighten(@wrm-primary, 5%);
+        box-shadow: inset 0px 11px 1px -10px rgba(255, 255, 255, 0.75);
       }
     }
   }
@@ -453,6 +453,7 @@ div.wrm-modal {
     &:hover:not(:disabled) {
       border-color: #999;
       background-color: #eee;
+      box-shadow: inset 0px 11px 1px -10px rgba(255, 255, 255, 0.75);
       outline: none;
     }
   }

@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 4.0.1 - 2021-05-xx
+
+### Changed
+- Fix inset shadow to only be present on active buttons.
+
 ## 4.0.0 - 2021-05-03
 
 ### Changed
