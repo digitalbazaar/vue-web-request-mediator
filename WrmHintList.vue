@@ -4,21 +4,27 @@
       <div class="wrm-flex-row wrm-flex-item"
         v-for="hint in hints" :key="hint.hintOption.credentialHandler">
         <wrm-hint
-          @click.native="!selectedHint && select(hint)"
+          @click.native="!confirmingRemove && !removingHint &&
+            !selectedHint && select(hint)"
           class="wrm-flex-item-grow"
           :hint="hint"
           :default-icon="defaultHintIcon"
-          :active="!!(activateOnSelect && selectedHint === hint)"
+          :active="!!(
+            ((confirmingRemove || removingHint) && removeHint === hint) ||
+            (activateOnSelect && selectedHint === hint))"
           :selected="selectedHint === hint"
           :selectable="true"
-          :disabled="!!(removingHint ||
+          :disabled="!!(removingHint || confirmingRemove ||
             (selectedHint && selectedHint !== hint))">
         </wrm-hint>
         <wrm-remove-button
           v-if="enableRemoveHint"
-          @click.native="remove(hint)"
+          @cancel="cancelRemove(hint)"
+          @confirm="confirmRemove(hint)"
+          @remove="remove(hint)"
           class="wrm-flex-item"
-          :disabled="!!(removingHint || selectedHint)">
+          :disabled="!!(removingHint || selectedHint ||
+            (removeHint && removeHint !== hint))">
         </wrm-remove-button>
       </div>
     </div>
@@ -54,19 +60,37 @@ export default {
   data() {
     return {
       selectedHint: null,
-      removingHint: false
+      confirmingRemove: false,
+      removeHint: null,
+      removingHint: false,
+      removeHintName: ''
     };
   },
   methods: {
+    async cancelRemove(hint) {
+      this.confirmingRemove = false;
+      this.removeHint = null;
+      hint.name = this.removeHintName;
+    },
+    async confirmRemove(hint) {
+      this.removeHint = hint;
+      this.removeHintName = hint.name;
+      this.confirmingRemove = true;
+      hint.name = 'WAITING TO REMOVE: ' + this.removeHintName;
+    },
     async remove(hint) {
       this.removingHint = true;
+      hint.name = 'REMOVING: ' + this.removeHintName;
       try {
         // wait for hint to be removed
         await this.onRemove(hint);
       } catch(e) {
         console.error(e);
       } finally {
+        hint.name = this.removeHintName;
         this.removingHint = false;
+        this.removeHint = null;
+        this.confirmingRemove = false;
       }
     },
     async select(hint) {
