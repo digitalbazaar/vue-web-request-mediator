@@ -1,5 +1,5 @@
 <template>
-  <div :class="hintClass">
+  <div :class="hintClass" style="overflow: hidden">
     <i v-if="!hint.icon"
       :class="[defaultIcon, 'fas wrm-flex-item']"
       style="font-size: 48px"></i>
@@ -19,11 +19,9 @@
 <script>
 /*!
  * New BSD License (3-clause)
- * Copyright (c) 2018, Digital Bazaar, Inc.
+ * Copyright (c) 2018-2021, Digital Bazaar, Inc.
  * All rights reserved.
  */
-'use strict';
-
 import WrmActivityBar from './WrmActivityBar.vue';
 import WrmOriginName from './WrmOriginName.vue';
 

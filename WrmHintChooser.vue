@@ -5,6 +5,8 @@
       <wrm-hint-list
         :hints="hints"
         :default-hint-icon="defaultHintIcon"
+        :enable-remove-hint="enableRemoveHint"
+        @remove="removeHint"
         @select="select" />
     </div>
     <div v-else-if="display === 'overview'" class="wrm-slide">
@@ -26,7 +28,9 @@
         <wrm-hint-list
           :hints="hints"
           :default-hint-icon="defaultHintIcon"
+          :enable-remove-hint="enableRemoveHint"
           activate-on-select
+          @remove="removeHint"
           @select="confirm" />
       </div>
       <slot name="hint-list-footer"></slot>
@@ -52,11 +56,9 @@
 <script>
 /*!
  * New BSD License (3-clause)
- * Copyright (c) 2018, Digital Bazaar, Inc.
+ * Copyright (c) 2018-2021, Digital Bazaar, Inc.
  * All rights reserved.
  */
-'use strict';
-
 import WrmCloseButton from './WrmCloseButton.vue';
 import WrmHint from './WrmHint.vue';
 import WrmHintList from './WrmHintList.vue';
@@ -85,6 +87,10 @@ export default {
     defaultHintIcon: {
       type: String,
       required: true
+    },
+    enableRemoveHint: {
+      type: Boolean,
+      default: false
     },
     confirmButton: {
       type: Boolean,
@@ -142,6 +148,24 @@ export default {
         _resolve();
       }
     },
+    async removeHint(event) {
+      let _resolve;
+      const promise = new Promise(r => _resolve = r);
+      this._resolve = _resolve;
+      event.waitUntil(promise);
+
+      this.confirming = true;
+
+      try {
+        // wait for remove to be handled
+        await this.onRemoveHint(event.hint);
+      } catch(e) {
+        console.error(e);
+      }
+
+      this.confirming = false;
+      _resolve();
+    },
     onCancel() {
       if(this.confirming) {
         this._resolve();
@@ -152,6 +176,14 @@ export default {
     onConfirm(hint) {
       let promise = Promise.resolve();
       this.$emit('confirm', {
+        hint,
+        waitUntil: p => promise = p
+      });
+      return promise;
+    },
+    onRemoveHint(hint) {
+      let promise = Promise.resolve();
+      this.$emit('remove-hint', {
         hint,
         waitUntil: p => promise = p
       });
