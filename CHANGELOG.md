@@ -1,6 +1,6 @@
 # vue-web-request-mediator ChangeLog
 
-## 4.3.0 - 2021-05-xx
+## 4.3.0 - 2021-05-17
 
 ### Added
 - Make hint removal text configurable.
