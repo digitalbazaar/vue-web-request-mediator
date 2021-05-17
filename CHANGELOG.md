@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 4.4.2 - 2021-05-xx
+
+### Fixed
+- Use manifest name for recommended hints if given.
+
 ## 4.4.1 - 2021-05-17
 
 ### Fixed

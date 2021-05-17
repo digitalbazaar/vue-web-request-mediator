@@ -12,7 +12,7 @@
       <wrm-origin :origin="hint.origin" />
       <div style="margin-top: 3px">
         <strong v-if="hint.jit" style="font-size: 10px">
-          Recommended by {{hint.jit.recommendedBy.domain}}
+          Recommended by {{hint.jit.recommendedBy.name}}
         </strong>
       </div>
       <wrm-activity-bar v-if="active" style="margin-top: 1px" />
