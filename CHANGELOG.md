@@ -1,6 +1,6 @@
 # vue-web-request-mediator ChangeLog
 
-## 4.4.1 - 2021-05-xx
+## 4.4.1 - 2021-05-17
 
 ### Fixed
 - Fix less rules for ripple effect on button.
