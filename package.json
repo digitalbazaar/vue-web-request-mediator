@@ -1,6 +1,6 @@
 {
   "name": "vue-web-request-mediator",
-  "version": "4.4.2",
+  "version": "4.4.3-0",
   "description": "Vue Web Request Mediator Components",
   "main": "index.js",
   "peerDependencies": {
