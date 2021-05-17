@@ -76,11 +76,10 @@ export default {
       this.removeHint = hint;
       this.removeHintName = hint.name;
       this.confirmingRemove = true;
-      hint.name = 'WAITING TO REMOVE: ' + this.removeHintName;
+      hint.name = 'Removing... ' + this.removeHintName;
     },
     async remove(hint) {
       this.removingHint = true;
-      hint.name = 'REMOVING: ' + this.removeHintName;
       try {
         // wait for hint to be removed
         await this.onRemove(hint);
