@@ -5,12 +5,12 @@
     <div>
       <svg :class="anyDisabled ? 'wrm-disabled' : ''">
         <circle cx="14" cy="14" r="14" />
-        <text x="8" y="19">{{icon}}</text>
+        <text x="7" y="19">{{icon}}</text>
       </svg>
     </div>
-    <div
-      v-if="removing"
-      style="float: none; font-size: 10px; text-align: center">Undo</div>
+    <div style="float: none; font-size: 10px; text-align: center">
+      {{iconText}}
+    </div>
   </div>
 </template>
 
@@ -31,6 +31,14 @@ export default {
       type: Number,
       // 5 seconds to cancel `remove` by default
       default: 5000
+    },
+    removeText: {
+      type: String,
+      default: ''
+    },
+    undoText: {
+      type: String,
+      default: 'Undo'
     }
   },
   computed: {
@@ -42,9 +50,12 @@ export default {
       return classes.join(' ');
     },
     icon() {
-      // f829 == fa-trash-restore
-      // f1f8 == fa-trash
-      return this.removing ? '\uf829' : '\uf1f8';
+      // f0e2 == fa-undo
+      // f056 == fa-minus-circle
+      return this.removing ? '\uf0e2' : '\uf056';
+    },
+    iconText() {
+      return this.removing ? this.undoText : this.removeText;
     },
     anyDisabled() {
       return this.disabled || this.canceling;

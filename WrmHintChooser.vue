@@ -103,7 +103,7 @@ export default {
     },
     hintRemovalText: {
       type: String,
-      default: 'Removing...'
+      default: 'Hiding...'
     },
     confirmButton: {
       type: Boolean,

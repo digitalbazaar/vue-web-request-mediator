@@ -10,6 +10,11 @@
       class="wrm-flex-item-grow wrm-ellipsis">
       <strong style="font-size: 14px">{{hint.name}}</strong>
       <wrm-origin :origin="hint.origin" />
+      <div style="margin-top: 3px">
+        <strong v-if="hint.jit" style="font-size: 10px">
+          Recommended by {{hint.jit.recommendedBy.domain}}
+        </strong>
+      </div>
       <wrm-activity-bar v-if="active" style="margin-top: 1px" />
       <!-- ensure same spacing whether activity bar is present or not -->
       <div v-else class="wrm-activity-bar" style="visibility: hidden"></div>

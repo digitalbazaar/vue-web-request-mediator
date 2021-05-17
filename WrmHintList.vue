@@ -25,7 +25,8 @@
           class="wrm-flex-item"
           :cancel-timeout="cancelRemoveHintTimeout"
           :disabled="!!(removingHint || selectedHint ||
-            (removeHint && removeHint !== hint))">
+            (removeHint && removeHint !== hint))"
+          :remove-text="'Hide'">
         </wrm-remove-button>
       </div>
     </div>
@@ -63,7 +64,7 @@ export default {
     },
     hintRemovalText: {
       type: String,
-      default: 'Removing...'
+      default: 'Hiding...'
     },
     activateOnSelect: Boolean
   },
