@@ -1,6 +1,6 @@
 # vue-web-request-mediator ChangeLog
 
-## 4.4.0 - 2021-05-xx
+## 4.4.0 - 2021-05-17
 
 ### Added
 - Enable customizing hint removal text; default to "hide" terminology.
