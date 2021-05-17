@@ -23,6 +23,7 @@
           @confirm="confirmRemove(hint)"
           @remove="remove(hint)"
           class="wrm-flex-item"
+          :cancel-timeout="cancelRemoveHintTimeout"
           :disabled="!!(removingHint || selectedHint ||
             (removeHint && removeHint !== hint))">
         </wrm-remove-button>
@@ -54,6 +55,11 @@ export default {
     enableRemoveHint: {
       type: Boolean,
       default: false
+    },
+    cancelRemoveHintTimeout: {
+      type: Number,
+      // 5 seconds to cancel remove hint by default
+      default: 5000
     },
     activateOnSelect: Boolean
   },

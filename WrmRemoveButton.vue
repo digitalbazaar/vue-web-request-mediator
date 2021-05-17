@@ -25,7 +25,12 @@ export default {
   props: {
     disabled: {
       type: Boolean,
-      required: false
+      default: false
+    },
+    cancelTimeout: {
+      type: Number,
+      // 5 seconds to cancel `remove` by default
+      default: 5000
     }
   },
   computed: {
@@ -86,9 +91,8 @@ export default {
       }
 
       await new Promise(resolve => {
-        // 5 seconds to cancel `remove`; could make a `prop` in the future
         this.resolveRemove = resolve;
-        this.timeoutId = setTimeout(resolve, 5000);
+        this.timeoutId = setTimeout(resolve, this.cancelTimeout);
       });
 
       // if not canceled during waitin period, proceed

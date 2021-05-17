@@ -6,6 +6,7 @@
         :hints="hints"
         :default-hint-icon="defaultHintIcon"
         :enable-remove-hint="enableRemoveHint"
+        :cancel-remove-hint-timeout="cancelRemoveHintTimeout"
         @remove="removeHint"
         @select="select" />
     </div>
@@ -29,6 +30,7 @@
           :hints="hints"
           :default-hint-icon="defaultHintIcon"
           :enable-remove-hint="enableRemoveHint"
+          :cancel-remove-hint-timeout="cancelRemoveHintTimeout"
           activate-on-select
           @remove="removeHint"
           @select="confirm" />
@@ -91,6 +93,11 @@ export default {
     enableRemoveHint: {
       type: Boolean,
       default: false
+    },
+    cancelRemoveHintTimeout: {
+      type: Number,
+      // 5 seconds to cancel remove hint by default
+      default: 5000
     },
     confirmButton: {
       type: Boolean,

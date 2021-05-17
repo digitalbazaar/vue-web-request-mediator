@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 4.2.0 - 2021-05-xx
+
+### Added
+- Make cancel remove hint timeout configurable.
+
 ## 4.1.1 - 2021-05-16
 
 ### Fixed
