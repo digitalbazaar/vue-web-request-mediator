@@ -61,6 +61,10 @@ export default {
       // 5 seconds to cancel remove hint by default
       default: 5000
     },
+    hintRemovalText: {
+      type: String,
+      default: 'Removing...'
+    },
     activateOnSelect: Boolean
   },
   data() {
@@ -82,7 +86,7 @@ export default {
       this.removeHint = hint;
       this.removeHintName = hint.name;
       this.confirmingRemove = true;
-      hint.name = 'Removing... ' + this.removeHintName;
+      hint.name = this.hintRemovalText + ' ' + this.removeHintName;
     },
     async remove(hint) {
       this.removingHint = true;
