@@ -18,7 +18,7 @@
             (selectedHint && selectedHint !== hint))">
         </wrm-hint>
         <wrm-remove-button
-          v-if="enableRemoveHint"
+          v-if="enableRemoveHint && !hint.jit"
           @cancel="cancelRemove(hint)"
           @confirm="confirmRemove(hint)"
           @remove="remove(hint)"

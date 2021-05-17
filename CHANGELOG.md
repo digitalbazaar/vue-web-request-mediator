@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 4.1.1 - 2021-05-xx
+
+### Fixed
+- Do not show remove hint for JIT hints.
+
 ## 4.1.0 - 2021-05-16
 
 ### Added
