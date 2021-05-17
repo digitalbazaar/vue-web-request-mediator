@@ -449,7 +449,7 @@ div.wrm-modal {
 
     /* non-iOS device detection (only :hover on non-iOS) */
     @supports not (-webkit-overflow-scrolling: touch) {
-      &:hover:not(.wrm-disabled) {
+      &:not(.wrm-disabled):hover {
         circle {
           visibility: visible;
         }
@@ -460,7 +460,7 @@ div.wrm-modal {
       }
     }
 
-    &:active:not(.wrm-disabled) {
+    &:not(.wrm-disabled):active {
       circle {
         visibility: visible;
       }
@@ -471,13 +471,13 @@ div.wrm-modal {
     }
   }
 
-  &:active:not(.wrm-disabled) {
+  &:not(.wrm-disabled):active {
     &:after {
       animation: wrm-ripple-small 0.5s ease-out;
     }
   }
 
-  &:after:not(.wrm-disabled) {
+  &:not(.wrm-disabled):after {
     content: '';
     border-radius: 50%;
     background-color: rgba(0, 0, 0, .2);
