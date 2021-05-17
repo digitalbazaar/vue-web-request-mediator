@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 4.1.0 - 2021-05-16
+
+### Added
+- Add UI option to remove hints.
+
 ## 4.0.2 - 2021-05-03
 
 ### Changed
