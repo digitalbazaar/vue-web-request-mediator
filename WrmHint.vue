@@ -6,18 +6,28 @@
     <img v-if="hint.icon" :src="hint.icon.fetchedImage"
       style="width: 48px; min-width: 48px; max-height: 48px"
       class="wrm-flex-item">
-    <div style="margin-left: 10px; margin-top: 3px"
-      class="wrm-flex-item-grow wrm-ellipsis">
-      <strong style="font-size: 14px">{{hint.name}}</strong>
-      <wrm-origin :origin="hint.origin" />
-      <div style="margin-top: 3px">
-        <strong v-if="hint.jit" style="font-size: 10px">
-          Recommended by {{hint.jit.recommendedBy.name}}
-        </strong>
+    <div
+      style="margin-left: 10px; margin-top: 3px; align-items: start;
+        overflow: hidden"
+      class="wrm-flex-column wrm-flex-item-grow">
+      <div class="wrm-flex-item-grow wrm-ellipsis" style="width: 100%">
+        <strong style="font-size: 14px">{{hint.name}}</strong>
+        <wrm-origin :origin="hint.origin" />
+        <div style="margin-top: 3px">
+          <strong v-if="hint.jit" style="font-size: 10px">
+            Recommended by {{hint.jit.recommendedBy.name}}
+          </strong>
+        </div>
       </div>
-      <wrm-activity-bar v-if="active" style="margin-top: 1px" />
+      <wrm-activity-bar
+        v-if="active"
+        class="wrm-flex-item"
+        style="margin-top: 1px" />
       <!-- ensure same spacing whether activity bar is present or not -->
-      <div v-else class="wrm-activity-bar" style="visibility: hidden"></div>
+      <div
+        v-else
+        class="wrm-activity-bar wrm-flex-item"
+        style="visibility: hidden"></div>
     </div>
   </div>
 </template>

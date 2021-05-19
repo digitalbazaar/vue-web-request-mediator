@@ -178,17 +178,15 @@ div.wrm-modal {
   overflow: hidden;
   scrollbar-width: none;
 
-  div, span, h6 {
+  div, span, h6, strong {
     text-overflow: ellipsis;
-    overflow: hidden;
   }
 
   &:hover, &.wrm-ellipsis-off {
     text-overflow: inherit;
     overflow-x: auto;
-    div, span, h6 {
+    div, span, h6, strong {
       text-overflow: inherit;
-      overflow: visible;
     }
   }
 
@@ -530,7 +528,7 @@ div.wrm-modal {
 
     /* non-iOS device detection (only :hover on non-iOS) */
     @supports not (-webkit-overflow-scrolling: touch) {
-      &:hover:not(:disabled) {
+      &:not(:disabled):hover {
         border-color: darken(@wrm-primary, 5%);
         background-color: lighten(@wrm-primary, 5%);
         box-shadow: inset 0px 11px 1px -10px rgba(255, 255, 255, 0.75);
@@ -540,7 +538,7 @@ div.wrm-modal {
 
   /* non-iOS device detection (only :hover on non-iOS) */
   @supports not (-webkit-overflow-scrolling: touch) {
-    &:hover:not(:disabled) {
+    &:not(:disabled):hover {
       border-color: #999;
       background-color: #eee;
       box-shadow: inset 0px 11px 1px -10px rgba(255, 255, 255, 0.75);
@@ -632,6 +630,10 @@ div.wrm-modal {
     }
 
     i {
+      color: @wrm-gray;
+    }
+
+    span {
       color: @wrm-gray;
     }
 
@@ -807,7 +809,7 @@ div.wrm-modal {
 
       /* non-iOS device detection (only :hover on non-iOS) */
       @supports not (-webkit-overflow-scrolling: touch) {
-        &:hover:not(:disabled) {
+        &:not(:disabled):hover {
           border-color: #54585d;
           background-color: #2b2d33;
         }
@@ -816,7 +818,7 @@ div.wrm-modal {
 
     /* non-iOS device detection (only :hover on non-iOS) */
     @supports not (-webkit-overflow-scrolling: touch) {
-      &:hover:not(:disabled) {
+      &:not(:disabled):hover {
         border-color: #54585d;
         background-color: #2b2d33;
       }

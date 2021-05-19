@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 4.4.3 - 2021-05-xx
+
+### Fixed
+- Fix various CSS bugs with hint display.
+
 ## 4.4.2 - 2021-05-17
 
 ### Fixed
