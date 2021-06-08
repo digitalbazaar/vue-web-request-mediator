@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 4.4.4 - 2021-06-xx
+
+### Fixed
+- Fix CSS media query for dark mode.
+
 ## 4.4.3 - 2021-05-19
 
 ### Fixed
