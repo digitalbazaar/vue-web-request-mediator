@@ -7,6 +7,7 @@
       :class="defaultIcon"></i>
     <img
       v-else
+      crossorigin="anonymous"
       style="vertical-align: middle"
       :src="icon"
       :style="{

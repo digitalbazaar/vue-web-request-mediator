@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 4.4.5 - 2022-01-xx
+
+### Fixed
+- Load cross origin images w/o credentials.
+
 ## 4.4.4 - 2021-06-08
 
 ### Fixed
