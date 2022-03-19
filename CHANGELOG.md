@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 4.4.7 - 2022-03-xx
+
+### Fixed
+- Fix disabled active/focused button outline.
+
 ## 4.4.6 - 2022-03-19
 
 ### Fixed

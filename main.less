@@ -554,8 +554,10 @@ div.wrm-modal {
   }
 
   &:active, &:focus {
-    outline: none;
-    border-color: @wrm-active-border-color;
+    &:not(:disabled) {
+      outline: none;
+      border-color: @wrm-active-border-color;
+    }
   }
 
   &:disabled {
