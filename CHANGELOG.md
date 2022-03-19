@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 4.4.6 - 2022-03-xx
+
+### Fixed
+- Fix primary button disabled appearance.
+
 ## 4.4.5 - 2022-01-18
 
 ### Fixed

@@ -526,6 +526,13 @@ div.wrm-modal {
     color: #f7f7f7;
     background-color: @wrm-primary;
 
+    &:disabled {
+      background-color: #ddd;
+      box-shadow: none;
+      color: @wrm-gray;
+      cursor: auto;
+    }
+
     /* non-iOS device detection (only :hover on non-iOS) */
     @supports not (-webkit-overflow-scrolling: touch) {
       &:not(:disabled):hover {
