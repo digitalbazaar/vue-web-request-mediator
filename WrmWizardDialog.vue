@@ -2,7 +2,7 @@
   <div class="wrm-modal">
     <div class="wrm-modal-content wrm-modern">
       <div class="wrm-flex-row wrm-modal-content-header wrm-modern">
-        <wrm-header-back-button v-if="!first"
+        <wrm-header-back-button v-if="!first && !hideBackButton"
           @click.native="onBack()" />
         <div
           class="wrm-flex-item-grow"
@@ -10,6 +10,7 @@
           <slot name="header"></slot>
         </div>
         <wrm-header-close-button
+          v-if="!hideCancelButton"
           @click.native="onCancel()"
           ref="close" />
       </div>
@@ -83,6 +84,14 @@ export default {
     hasNext: {
       type: Boolean,
       required: true
+    },
+    hideBackButton: {
+      type: Boolean,
+      default: false
+    },
+    hideCancelButton: {
+      type: Boolean,
+      default: false
     },
     blocked: {
       type: Boolean,
