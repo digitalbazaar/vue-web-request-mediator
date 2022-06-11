@@ -6,7 +6,9 @@
         <strong>{{origin}}</strong> wants to
       </div>
       <div style="padding-top: 15px"></div>
-      <div v-for="permission in permissions">
+      <div
+        v-for="permission in permissions"
+        :key="permission.name">
         <i :class="permission.icon"></i> {{permission.name}}
       </div>
       <br>
