@@ -2,7 +2,8 @@
   <div class="wrm-flex-column-stretch">
     <div class="wrm-flex-column-stretch wrm-flex-item-grow">
       <div class="wrm-flex-row wrm-flex-item"
-        v-for="hint in hints" :key="hint.hintOption.credentialHandler">
+        v-for="hint in nonJitHints"
+        :key="hint.hintOption.credentialHandler">
         <wrm-hint
           @click.native="!confirmingRemove && !removingHint &&
             !selectedHint && select(hint)"
@@ -18,7 +19,7 @@
             (selectedHint && selectedHint !== hint))">
         </wrm-hint>
         <wrm-remove-button
-          v-if="enableRemoveHint && !hint.jit"
+          v-if="enableRemoveHint"
           @cancel="cancelRemove(hint)"
           @confirm="confirmRemove(hint)"
           @remove="remove(hint)"
@@ -28,6 +29,27 @@
             (removeHint && removeHint !== hint))"
           :remove-text="'Hide'">
         </wrm-remove-button>
+      </div>
+      <div
+        v-if="hasMixedHints"
+        class="wrm-flex-row wrm-flex-item wrm-separator" />
+      <div class="wrm-flex-row wrm-flex-item"
+        v-for="hint in jitHints"
+        :key="hint.hintOption.credentialHandler">
+        <wrm-hint
+          @click.native="!confirmingRemove && !removingHint &&
+            !selectedHint && select(hint)"
+          class="wrm-flex-item-grow"
+          :hint="hint"
+          :default-icon="defaultHintIcon"
+          :active="!!(
+            ((confirmingRemove || removingHint) && removeHint === hint) ||
+            (activateOnSelect && selectedHint === hint))"
+          :selected="selectedHint === hint"
+          :selectable="true"
+          :disabled="!!(removingHint || confirmingRemove ||
+            (selectedHint && selectedHint !== hint))">
+        </wrm-hint>
       </div>
     </div>
   </div>
@@ -76,6 +98,17 @@ export default {
       removingHint: false,
       removeHintName: ''
     };
+  },
+  computed: {
+    hasMixedHints() {
+      return this.jitHints.length > 0 && this.nonJitHints.length > 0;
+    },
+    jitHints() {
+      return this.hints.filter(h => h.jit);
+    },
+    nonJitHints() {
+      return this.hints.filter(h => !h.jit);
+    }
   },
   methods: {
     async cancelRemove(hint) {
