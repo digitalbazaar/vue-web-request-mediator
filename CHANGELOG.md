@@ -1,6 +1,6 @@
 # vue-web-request-mediator ChangeLog
 
-## 5.0.0 - 2022-06-xx
+## 5.0.0 - 2022-06-13
 
 ### Changed
 - **BREAKING**: Support 1p (first party) modal displays.
