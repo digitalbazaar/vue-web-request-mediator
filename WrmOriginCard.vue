@@ -1,7 +1,7 @@
 <template>
   <div class="wrm-flex-row">
     <wrm-origin-icon
-      :icon-size="48"
+      :icon-size="iconSize"
       :origin="origin"
       :manifest="manifest"
       style="padding-right: 10px" />
@@ -32,6 +32,11 @@ export default {
   name: 'WrmOriginCard',
   components: {WrmOriginIcon, WrmOriginName},
   props: {
+    iconSize: {
+      type: Number,
+      required: false,
+      default: () => 48
+    },
     origin: {
       type: String,
       required: true
