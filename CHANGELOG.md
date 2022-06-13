@@ -1,5 +1,12 @@
 # vue-web-request-mediator ChangeLog
 
+## 5.0.0 - 2022-06-xx
+
+### Changed
+- **BREAKING**: Support 1p (first party) modal displays.
+- **BREAKING**: Support mixing jit/non-jit hint displays.
+- **BREAKING**: Support hiding buttons in wizard.
+
 ## 4.4.7 - 2022-03-19
 
 ### Fixed
