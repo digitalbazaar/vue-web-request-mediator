@@ -105,14 +105,39 @@ div.wrm-modal {
 
   @media only screen and (max-width: @wrm-modal-small-screen) {
     /* full screen appearance */
-    height: 100%;
-    justify-content: flex-end;
-    padding-bottom: 0;
+    &:not(.wrm-modal-1p) {
+      height: 100%;
+      justify-content: flex-end;
+      padding-bottom: 0;
+    }
   }
   @media only screen and (min-width: @wrm-modal-large-screen) {
-    /* dialog appearance */
-    justify-content: flex-start;
-    padding-bottom: 5px;
+    &:not(.wrm-modal-1p) {
+      /* dialog appearance */
+      justify-content: flex-start;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+.wrm-modal-1p {
+  height: 100%;
+  padding: 0;
+}
+
+.wrm-modal-1p > .wrm-modal-content {
+  /* full screen appearance */
+  margin-top: 0;
+  /* must subtract padding */
+  width: calc(100% - @wrm-modal-padding-x);
+  border: none;
+  border-top: 1px solid @wrm-modal-modern-border-color;
+  border-radius: 3px 3px 0 0;
+  box-shadow: none;
+  height: 100%;
+
+  &.wrm-modern {
+    width: calc(100% - @wrm-modal-padding-x);
   }
 }
 
