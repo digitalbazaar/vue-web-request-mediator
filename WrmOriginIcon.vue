@@ -18,10 +18,11 @@
       @error="imageError">
   </span>
 </template>
+
 <script>
 /*!
  * New BSD License (3-clause)
- * Copyright (c) 2017-2021, Digital Bazaar, Inc.
+ * Copyright (c) 2017-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
 import {getWebAppManifestIcon} from './manifest.js';
@@ -91,5 +92,6 @@ export default {
   }
 };
 </script>
+
 <style>
 </style>

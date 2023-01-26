@@ -3,7 +3,7 @@
     <div class="wrm-modal-content wrm-modern">
       <div class="wrm-flex-row wrm-modal-content-header wrm-modern">
         <wrm-header-back-button v-if="!first && !hideBackButton"
-          @click.native="onBack()" />
+          @click="onBack()" />
         <div
           class="wrm-flex-item-grow"
           style="padding: 0 15px; overflow: hidden;">
@@ -11,7 +11,7 @@
         </div>
         <wrm-header-close-button
           v-if="!hideCancelButton"
-          @click.native="onCancel()"
+          @click="onCancel()"
           ref="close" />
       </div>
       <div>
@@ -44,15 +44,16 @@
     </div>
   </div>
 </template>
+
 <script>
 /*!
  * New BSD License (3-clause)
- * Copyright (c) 2019-2021, Digital Bazaar, Inc.
+ * Copyright (c) 2019-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
 export default {
   name: 'WrmWizardDialog',
-  components: {},
+  emits: ['cancel', 'next', 'back', 'finish'],
   async created() {
     this._listener = event => {
       if(event.key === 'Escape') {
@@ -114,5 +115,6 @@ export default {
   }
 };
 </script>
+
 <style>
 </style>

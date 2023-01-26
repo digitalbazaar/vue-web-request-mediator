@@ -32,10 +32,11 @@
     </div>
   </div>
 </template>
+
 <script>
 /*!
  * New BSD License (3-clause)
- * Copyright (c) 2018-2021, Digital Bazaar, Inc.
+ * Copyright (c) 2018-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
 import WrmActivityBar from './WrmActivityBar.vue';
@@ -82,8 +83,10 @@ export default {
       }
       return classes.join(' ');
     }
-  }
+  },
+  emits: ['click']
 };
 </script>
+
 <style>
 </style>
