@@ -26,7 +26,7 @@
  * All rights reserved.
  */
 import {computed, ref, toRef, watch} from 'vue';
-import {getWebAppManifestIcon} from './manifest.js';
+import {getWebAppManifestIcon} from '../lib/manifest.js';
 
 export default {
   name: 'WrmOriginIcon',
