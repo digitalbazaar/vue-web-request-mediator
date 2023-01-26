@@ -55,36 +55,39 @@ export default {
     const origin = toRef(props, 'origin');
     const manifest = toRef(props, 'manifest');
 
-    const favicon = computed(() => {
-      if(iconType.value === 'default') {
-        iconType.value = 'favicon';
-      }
-      return `${origin.value}/favicon.ico`;
-    });
-    const icon = computed(() => {
-      const icon = getWebAppManifestIcon({
-        manifest: manifest.value,
-        origin: origin.value,
-        size: iconSize.value
-      });
-      if(!icon) {
-        iconType.value = 'favicon';
-        return favicon.value;
-      }
-      iconType.value = 'manifest';
-      return icon.value.src;
-    });
-    const iconPixelSize = computed(() => iconSize.value + 'px');
+    const icon = ref('');
+    const favicon = computed(() => `${origin.value}/favicon.ico`);
+    const iconPixelSize = computed(() => `${iconSize.value}px`);
 
     const imageError = event => {
+      // if the error was with loading the `favicon`, then fallback to the
+      // the default icon; otherwise the error was with the manifest icon,
+      // so fallback to using the `favicon`
       iconType.value = event.target.src === favicon.value ?
         'default' : 'favicon';
     };
 
-    // FIXME: this comment is from the vue 2 implementation; check in vue 3:
-    // this watch appears to be required to trigger loading proper image,
-    // `computed` icon is insufficient
-    watch(manifest, () => iconType.value = 'manifest');
+    const updateIcon = manifestValue => {
+      const bestIcon = getWebAppManifestIcon({
+        manifest: manifestValue,
+        origin: origin.value,
+        size: iconSize.value
+      });
+      if(bestIcon) {
+        iconType.value = 'manifest';
+        icon.value = bestIcon.src;
+      } else {
+        // fallback to favicon icon instead
+        iconType.value = 'favicon';
+        icon.value = favicon.value;
+      }
+    };
+
+    // initialize icon using manifest value if available
+    updateIcon(manifest.value);
+
+    // watch manifest for changes and update icon type and icon to use
+    watch(manifest, updateIcon);
 
     return {icon, iconPixelSize, imageError};
   }
