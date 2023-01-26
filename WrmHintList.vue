@@ -61,13 +61,13 @@
  * Copyright (c) 2018-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
+import {computed, ref, toRef} from 'vue';
 import WrmHint from './WrmHint.vue';
 import WrmRemoveButton from './WrmRemoveButton.vue';
 
 export default {
   name: 'WrmHintList',
   components: {WrmHint, WrmRemoveButton},
-  emits: ['remove', 'select'],
   props: {
     hints: {
       type: Array,
@@ -92,79 +92,87 @@ export default {
     },
     activateOnSelect: Boolean
   },
-  data() {
-    return {
-      selectedHint: null,
-      confirmingRemove: false,
-      removeHint: null,
-      removingHint: false,
-      removeHintName: ''
+  setup(props, {emit}) {
+    const hints = toRef(props, 'hints');
+    const defaultHintIcon = toRef(props, 'defaultHintIcon');
+    const enableRemoveHint = toRef(props, 'enableRemoveHint');
+    const cancelRemoveHintTimeout = toRef(props, 'cancelRemoveHintTimeout');
+    const hintRemovalText = toRef(props, 'hintRemovalText');
+    const activateOnSelect = toRef(props, 'activateOnSelect');
+
+    const selectedHint = ref(null);
+    const confirmingRemove = ref(false);
+    const removeHint = ref(null);
+    const removingHint = ref(false);
+    let removeHintName = '';
+
+    const jitHints = computed(() => hints.value.filter(h => h.jit));
+    const nonJitHints = computed(() => hints.value.filter(h => !h.jit));
+    const hasMixedHints = computed(
+      () => jitHints.value.length > 0 && nonJitHints.value.length > 0);
+
+    // FIXME: consider using vue-extendable-event
+    const onRemove = async hint => {
+      let promise = Promise.resolve();
+      emit('remove', {
+        hint,
+        waitUntil: p => promise = p
+      });
+      return promise;
     };
-  },
-  computed: {
-    hasMixedHints() {
-      return this.jitHints.length > 0 && this.nonJitHints.length > 0;
-    },
-    jitHints() {
-      return this.hints.filter(h => h.jit);
-    },
-    nonJitHints() {
-      return this.hints.filter(h => !h.jit);
-    }
-  },
-  methods: {
-    async cancelRemove(hint) {
-      this.confirmingRemove = false;
-      this.removeHint = null;
-      hint.name = this.removeHintName;
-    },
-    async confirmRemove(hint) {
-      this.removeHint = hint;
-      this.removeHintName = hint.name;
-      this.confirmingRemove = true;
-      hint.name = this.hintRemovalText + ' ' + this.removeHintName;
-    },
-    async remove(hint) {
-      this.removingHint = true;
+    const onSelect = async hint => {
+      let promise = Promise.resolve();
+      emit('select', {
+        hint,
+        waitUntil: p => promise = p
+      });
+      return promise;
+    };
+
+    const cancelRemove = hint => {
+      confirmingRemove.value = false;
+      removeHint.value = null;
+      hint.name = removeHintName;
+    };
+    const confirmRemove = hint => {
+      removeHint.value = hint;
+      removeHintName = hint.name;
+      confirmingRemove.value = true;
+      hint.name = `${hintRemovalText.value} ${removeHintName}`;
+    };
+    const remove = async hint => {
+      removingHint.value = true;
       try {
         // wait for hint to be removed
-        await this.onRemove(hint);
+        await onRemove(hint);
       } catch(e) {
         console.error(e);
       } finally {
-        hint.name = this.removeHintName;
-        this.removingHint = false;
-        this.removeHint = null;
-        this.confirmingRemove = false;
+        hint.name = removeHintName;
+        removingHint.value = false;
+        removeHint.value = null;
+        confirmingRemove.value = false;
       }
-    },
-    async select(hint) {
-      this.selectedHint = hint;
+    };
+    const select = async hint => {
+      selectedHint.value = hint;
       try {
         // wait for selection to be handled
-        await this.onSelect(hint);
+        await onSelect(hint);
       } catch(e) {
         console.error(e);
       }
-      this.selectedHint = null;
-    },
-    onRemove(hint) {
-      let promise = Promise.resolve();
-      this.$emit('remove', {
-        hint,
-        waitUntil: p => promise = p
-      });
-      return promise;
-    },
-    onSelect(hint) {
-      let promise = Promise.resolve();
-      this.$emit('select', {
-        hint,
-        waitUntil: p => promise = p
-      });
-      return promise;
-    }
-  }
+      selectedHint.value = null;
+    };
+
+    return {
+      defaultHintIcon, enableRemoveHint, cancelRemoveHintTimeout,
+      activateOnSelect, selectedHint, confirmingRemove,
+      jitHints, nonJitHints, hasMixedHints,
+      cancelRemove, confirmRemove, remove, select
+    };
+  },
+  emits: ['remove', 'select']
 };
 </script>
 
