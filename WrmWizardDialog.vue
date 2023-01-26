@@ -51,28 +51,10 @@
  * Copyright (c) 2019-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
+import {onBeforeUnmount, onMounted, ref} from 'vue';
+
 export default {
   name: 'WrmWizardDialog',
-  emits: ['cancel', 'next', 'back', 'finish'],
-  async created() {
-    this._listener = event => {
-      if(event.key === 'Escape') {
-        event.preventDefault();
-        this.onCancel();
-      }
-    };
-    document.addEventListener('keydown', this._listener);
-  },
-  destroyed() {
-    document.removeEventListener('keydown', this._listener);
-  },
-  mounted() {
-    // focus on a button to allow `Escape` to function properly
-    const button = this.$refs.next || this.$refs.finish || this.$refs.close;
-    if(button) {
-      button.focus();
-    }
-  },
   props: {
     loading: {
       type: Boolean,
@@ -99,20 +81,40 @@ export default {
       required: true
     }
   },
-  methods: {
-    onCancel() {
-      this.$emit('cancel');
-    },
-    onNext() {
-      this.$emit('next');
-    },
-    onBack() {
-      this.$emit('back');
-    },
-    onFinish() {
-      this.$emit('finish');
-    }
-  }
+  setup(props, {emit}) {
+    const close = ref(null);
+    const finish = ref(null);
+    const next = ref(null);
+
+    const onCancel = () => emit('cancel');
+    const onNext = () => emit('next');
+    const onBack = () => emit('back');
+    const onFinish = () => emit('finish');
+
+    let _listener;
+
+    onMounted(() => {
+      _listener = event => {
+        if(event.key === 'Escape') {
+          event.preventDefault();
+          onCancel();
+        }
+      };
+      document.addEventListener('keydown', _listener);
+
+      // focus on a button to allow `Escape` to function properly
+      const button = ref.next.value || ref.finish.value || ref.close.value;
+      if(button) {
+        button.focus();
+      }
+    });
+    onBeforeUnmount(() => {
+      document.removeEventListener('keydown', _listener);
+    });
+
+    return {close, finish, next, onCancel, onNext, onBack, onFinish};
+  },
+  emits: ['cancel', 'next', 'back', 'finish']
 };
 </script>
 
