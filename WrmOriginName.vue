@@ -13,24 +13,10 @@
  * Copyright (c) 2017-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
+import {computed, toRef} from 'vue';
+
 export default {
   name: 'WrmOriginName',
-  computed: {
-    domain() {
-      // origin should always start with `https://`
-      if(this.origin.startsWith('https://')) {
-        return this.origin.substr(8);
-      }
-      return null;
-    },
-    name() {
-      if(!this.manifest) {
-        return this.domain || this.origin;
-      }
-      const {name, short_name} = this.manifest;
-      return name || short_name || this.domain || this.origin;
-    }
-  },
   props: {
     origin: {
       type: String,
@@ -40,6 +26,27 @@ export default {
       type: Object,
       required: false
     }
+  },
+  setup(props) {
+    const origin = toRef(props, 'origin');
+    const manifest = toRef(props, 'manifest');
+
+    const domain = computed(() => {
+      // origin should always start with `https://`
+      if(origin.value.startsWith('https://')) {
+        return origin.value.substr(8);
+      }
+      return null;
+    });
+    const name = computed(() => {
+      if(!manifest.value) {
+        return domain.value || origin.value;
+      }
+      const {name, short_name} = manifest.value;
+      return name || short_name || domain.value || origin.value;
+    });
+
+    return {name};
   }
 };
 </script>
