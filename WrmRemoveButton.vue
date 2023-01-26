@@ -20,6 +20,8 @@
  * Copyright (c) 2021-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
+import {computed, ref, toRef} from 'vue';
+
 export default {
   name: 'WrmRemoveButton',
   emits: ['cancel', 'confirm', 'remove'],
@@ -42,105 +44,100 @@ export default {
       default: 'Undo'
     }
   },
-  computed: {
-    buttonClass() {
-      const classes = ['wrm-remove-button'];
-      if(this.anyDisabled) {
-        classes.push('wrm-disabled');
-      }
-      return classes.join(' ');
-    },
-    icon() {
-      // f0e2 == fa-undo
-      // f056 == fa-minus-circle
-      return this.removing ? '\uf0e2' : '\uf056';
-    },
-    iconText() {
-      return this.removing ? this.undoText : this.removeText;
-    },
-    anyDisabled() {
-      return this.disabled || this.canceling;
-    }
-  },
-  data() {
-    return {
-      canceling: false,
-      removing: false,
-      timeoutId: null,
-      resolveRemove: null
+  setup(props, {emit}) {
+    // FIXME: consider using vue-extendable-event instead
+    const onConfirm = async () => {
+      let promise = Promise.resolve();
+      emit('confirm', {waitUntil: p => promise = p});
+      return promise;
     };
-  },
-  methods: {
-    async clicked() {
-      // already removing, cancel
-      if(this.removing) {
-        this.removing = false;
-        clearTimeout(this.timeoutId);
-        this.resolveRemove();
+    const onCancel = async () => {
+      let promise = Promise.resolve();
+      emit('cancel', {waitUntil: p => promise = p});
+      return promise;
+    };
+    const onRemove = async () => {
+      let promise = Promise.resolve();
+      emit('remove', {waitUntil: p => promise = p});
+      return promise;
+    }
 
-        this.canceling = true;
+    const canceling = ref(false);
+    const cancelTimeout = toRef(props, 'cancelTimeout');
+    const removing = ref(false);
+    let timeoutId = null;
+    let resolveRemove = null;
+
+    const clicked = async () => {
+      // already removing, cancel
+      if(removing.value) {
+        removing.value = false;
+        clearTimeout(timeoutId);
+        resolveRemove();
+
+        canceling.value = true;
         try {
-          await this.onCancel();
+          await onCancel();
         } catch(e) {
           console.error(e);
         } finally {
-          this.removing = false;
-          this.canceling = false;
+          removing.value = false;
+          his.canceling.value = false;
         }
         return;
       }
 
-      this.removing = true;
+      removing.value = true;
 
       // indicate confirmation period as started
       try {
-        await this.onConfirm();
+        await onConfirm();
       } catch(e) {
         console.error(e);
         // return early, remove confirmation event failed
-        this.removing = false;
+        removing.value = false;
         return;
       }
 
       await new Promise(resolve => {
-        this.resolveRemove = resolve;
-        this.timeoutId = setTimeout(resolve, this.cancelTimeout);
+        resolveRemove = resolve;
+        timeoutId = setTimeout(resolve, cancelTimeout.value);
       });
 
-      // if not canceled during waitin period, proceed
-      if(this.removing) {
-        this.localDisabled = true;
+      // if not canceled during waiting period, proceed
+      if(removing.value) {
         try {
-          await this.onRemove();
+          await onRemove();
         } catch(e) {
           console.error(e);
         } finally {
-          this.removing = false;
-          this.localDisabled = false;
+          removing.value = false;
         }
       }
-    },
-    async onConfirm() {
-      let promise = Promise.resolve();
-      this.$emit('confirm', {
-        waitUntil: p => promise = p
-      });
-      return promise;
-    },
-    async onCancel() {
-      let promise = Promise.resolve();
-      this.$emit('cancel', {
-        waitUntil: p => promise = p
-      });
-      return promise;
-    },
-    async onRemove() {
-      let promise = Promise.resolve();
-      this.$emit('remove', {
-        waitUntil: p => promise = p
-      });
-      return promise;
-    }
+    };
+
+    const disabled = toRef(props, 'disabled');
+    const anyDisabled = computed(() => disabled.value || canceling.value);
+
+    const buttonClass = computed(() => {
+      const classes = ['wrm-remove-button'];
+      if(anyDisabled.value) {
+        classes.push('wrm-disabled');
+      }
+      return classes.join(' ');
+    });
+
+    const undoText = toRef(props, 'undoText');
+    const removeText = toRef(props, 'removeText');
+    const icon = computed(() => {
+      // f0e2 == fa-undo
+      // f056 == fa-minus-circle
+      return removing.value ? '\uf0e2' : '\uf056';
+    });
+    const iconText = computed(
+      () => removing.value ? undoText.value : removeText.value);
+
+    return {disabled, anyDisabled, clicked, buttonClass, icon, iconText};
   }
 };
 </script>
