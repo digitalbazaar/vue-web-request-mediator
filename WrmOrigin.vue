@@ -20,22 +20,26 @@
  * Copyright (c) 2017-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
+import {computed, toRef} from 'vue';
+
 export default {
   name: 'WrmOrigin',
-  computed: {
-    domain() {
-      // origin should always start with `https://`
-      if(this.origin.startsWith('https://')) {
-        return this.origin.substr(8);
-      }
-      return null;
-    }
-  },
   props: {
     origin: {
       type: String,
       required: true
     }
+  },
+  setup(props) {
+    const origin = toRef(props, 'origin');
+    const domain = computed(() => {
+      // origin should always start with `https://`
+      if(origin.value.startsWith('https://')) {
+        return origin.value.substr(8);
+      }
+      return null;
+    });
+    return {domain, origin};
   }
 };
 </script>
