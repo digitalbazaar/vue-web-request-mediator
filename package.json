@@ -5,11 +5,13 @@
   "type": "module",
   "exports": {
     ".": "./lib/index.js",
-    "./components/": "./components/"
+    "./components/": "./components/",
+    "./style/": "./style/"
   },
   "files": [
     "components/*",
-    "lib/*"
+    "lib/*",
+    "style/*"
   ],
   "scripts": {
     "lint": "eslint ."
