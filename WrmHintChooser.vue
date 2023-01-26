@@ -64,6 +64,7 @@
  * Copyright (c) 2018-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
+import {onMounted, onBeforeUnMount, ref, toRef} from 'vue';
 import WrmCloseButton from './WrmCloseButton.vue';
 import WrmHint from './WrmHint.vue';
 import WrmHintList from './WrmHintList.vue';
@@ -71,20 +72,6 @@ import WrmHintList from './WrmHintList.vue';
 export default {
   name: 'WrmHintChooser',
   components: {WrmCloseButton, WrmHint, WrmHintList},
-  emits: ['cancel', 'confirm', 'remove-hint'],
-  async created() {
-    const self = this;
-    this._listener = event => {
-      if(!self.confirming && event.key === 'Escape') {
-        event.preventDefault();
-        self.close();
-      }
-    };
-    document.addEventListener('keydown', this._listener);
-  },
-  destroyed() {
-    document.removeEventListener('keydown', this._listener);
-  },
   props: {
     hints: {
       type: Array,
@@ -116,95 +103,125 @@ export default {
       default: 'Confirm'
     }
   },
-  data() {
-    return {
-      display: 'overview',
-      confirming: false,
-      selectedHint: null
+  setup(props, {emit}) {
+    const display = ref('overview');
+    const confirming = ref(false);
+    const selectedHint = ref(null);
+
+    const hints = toRef(props, 'hints');
+    const defaultHintIcon = toRef(props, 'defaultHintIcon');
+    const enableRemoveHint = toRef(props, 'enableRemoveHint');
+    const cancelRemoveHintTimeout = toRef(props, 'cancelRemoveHintTimeout');
+    const hintRemovalText = toRef(props, 'hintRemovalText');
+    const confirmButton = toRef(props, 'confirmButton');
+    const confirmButtonText = toRef(props, 'confirmButtonText');
+
+    let _resolve;
+
+    const onCancel = () => {
+      if(confirming.value) {
+        _resolve();
+        confirming.value = false;
+      }
+      emit('cancel');
     };
-  },
-  methods: {
-    close() {
-      if(this.display === 'list') {
-        this.display = 'overview';
+    // FIXME: consider using vue-extendable-event
+    const onConfirm = async hint => {
+      let promise = Promise.resolve();
+      emit('confirm', {
+        hint,
+        waitUntil: p => promise = p
+      });
+      return promise;
+    };
+    const onRemoveHint = async hint => {
+      let promise = Promise.resolve();
+      emit('remove-hint', {
+        hint,
+        waitUntil: p => promise = p
+      });
+      return promise;
+    };
+
+    // FIXME: methods
+    const close = () => {
+      if(display.value === 'list') {
+        display.value = 'overview';
         return;
       }
-      this.onCancel();
-    },
-    select(event) {
-      this.selectedHint = event.hint;
-      this.display = 'overview';
-    },
-    async confirm(event) {
-      let _resolve;
+      onCancel();
+    };
+    const select = event => {
+      selectedHint.value = event.hint;
+      display.value = 'overview';
+    };
+    const confirm = async event => {
       const promise = new Promise(r => _resolve = r);
-      this._resolve = _resolve;
       event.waitUntil(promise);
 
-      this.selectedHint = event.hint;
-      this.confirming = true;
+      selectedHint.value = event.hint;
+      confirming.value = true;
 
       try {
         // wait for selection to be handled
-        await this.onConfirm(event.hint);
+        await onConfirm(event.hint);
       } catch(e) {
         console.error(e);
       }
 
       // ensure still confirming and not canceled
-      if(this.confirming) {
-        if(!this.confirmButton) {
-          this.selectedHint = null;
+      if(confirming.value) {
+        if(!confirmButton.value) {
+          selectedHint.value = null;
         } else {
-          this.selectedHint = this.hints[0] || null;
+          selectedHint.value = hints.value[0] || null;
         }
-        this.confirming = false;
+        confirming.value = false;
 
         _resolve();
       }
-    },
-    async removeHint(event) {
-      let _resolve;
+    };
+    const removeHint = async event => {
       const promise = new Promise(r => _resolve = r);
-      this._resolve = _resolve;
       event.waitUntil(promise);
 
-      this.confirming = true;
+      confirming.value = true;
 
       try {
         // wait for remove to be handled
-        await this.onRemoveHint(event.hint);
+        await onRemoveHint(event.hint);
       } catch(e) {
         console.error(e);
       }
 
-      this.confirming = false;
+      confirming.value = false;
       _resolve();
-    },
-    onCancel() {
-      if(this.confirming) {
-        this._resolve();
-        this.confirming = false;
-      }
-      this.$emit('cancel');
-    },
-    onConfirm(hint) {
-      let promise = Promise.resolve();
-      this.$emit('confirm', {
-        hint,
-        waitUntil: p => promise = p
-      });
-      return promise;
-    },
-    onRemoveHint(hint) {
-      let promise = Promise.resolve();
-      this.$emit('remove-hint', {
-        hint,
-        waitUntil: p => promise = p
-      });
-      return promise;
-    }
-  }
+    };
+
+    let listener;
+
+    onMounted(() => {
+      listener = event => {
+        if(!confirming.value && event.key === 'Escape') {
+          event.preventDefault();
+          close();
+        }
+      };
+      document.addEventListener('keydown', listener);
+    });
+
+    onBeforeUnMount(() => {
+      document.removeEventListener('keydown', listener);
+    });
+
+    return {
+      confirming, display, selectedHint,
+      hints, defaultHintIcon, enableRemoveHint, cancelRemoveHintTimeout,
+      hintRemovalText, confirmButton, confirmButtonText,
+      onCancel, confirm, removeHint, select
+    };
+  },
+  emits: ['cancel', 'confirm', 'remove-hint']
 };
 </script>
 
