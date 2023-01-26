@@ -91,25 +91,25 @@ export default {
     const onBack = () => emit('back');
     const onFinish = () => emit('finish');
 
-    let _listener;
+    let listener;
 
     onMounted(() => {
-      _listener = event => {
+      listener = event => {
         if(event.key === 'Escape') {
           event.preventDefault();
           onCancel();
         }
       };
-      document.addEventListener('keydown', _listener);
+      document.addEventListener('keydown', listener);
 
       // focus on a button to allow `Escape` to function properly
-      const button = ref.next.value || ref.finish.value || ref.close.value;
+      const button = next.value || finish.value || close.value;
       if(button) {
         button.focus();
       }
     });
     onBeforeUnmount(() => {
-      document.removeEventListener('keydown', _listener);
+      document.removeEventListener('keydown', listener);
     });
 
     return {close, finish, next, onCancel, onNext, onBack, onFinish};
