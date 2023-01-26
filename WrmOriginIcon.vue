@@ -25,37 +25,11 @@
  * Copyright (c) 2017-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
+import {computed, ref, toRef, watch} from 'vue';
 import {getWebAppManifestIcon} from './manifest.js';
 
 export default {
   name: 'WrmOriginIcon',
-  computed: {
-    favicon() {
-      if(this.iconType === 'default') {
-        this.iconType = 'favicon';
-      }
-      return `${this.origin}/favicon.ico`;
-    },
-    icon() {
-      const {favicon, manifest, origin} = this;
-      const icon = getWebAppManifestIcon(
-        {manifest, origin, size: this.iconSize});
-      if(!icon) {
-        this.iconType = 'favicon';
-        return favicon;
-      }
-      this.iconType = 'manifest';
-      return icon.src;
-    },
-    iconPixelSize() {
-      return this.iconSize + 'px';
-    }
-  },
-  data() {
-    return {
-      iconType: 'manifest'
-    };
-  },
   props: {
     defaultIcon: {
       type: String,
@@ -74,21 +48,44 @@ export default {
       required: false
     }
   },
-  methods: {
-    async imageError(event) {
-      if(event.target.src === this.favicon) {
-        this.iconType = 'default';
-      } else {
-        this.iconType = 'favicon';
+  setup(props) {
+    const defaultIcon = toRef(props, 'defaultIcon');
+    const iconType = ref('manifest');
+    const iconSize = toRef(props, 'iconSize');
+    const origin = toRef(props, 'origin');
+
+    const favicon = computed(() => {
+      if(iconType.value === 'default') {
+        iconType.value = 'favicon';
       }
-    }
-  },
-  watch: {
-    manifest() {
-      // this watch appears to be required to trigger loading proper image,
-      // `computed` icon is insufficient
-      this.iconType = 'manifest';
-    }
+      return `${origin.value}/favicon.ico`;
+    });
+    const icon = computed(() => {
+      const icon = getWebAppManifestIcon({
+        manifest: manifest.value,
+        origin: origin.value,
+        size: iconSize.value
+      });
+      if(!icon) {
+        iconType.value = 'favicon';
+        return favicon.value;
+      }
+      iconType.value = 'manifest';
+      return icon.value.src;
+    });
+    const iconPixelSize = computed(() => iconSize.value + 'px');
+
+    const imageError = event => {
+      iconType.value = event.target.src === favicon.value ?
+        'default' : 'favicon';
+    };
+
+    // FIXME: this comment is from the vue 2 implementation; check in vue 3:
+    // this watch appears to be required to trigger loading proper image,
+    // `computed` icon is insufficient
+    watch(manifest, () => iconType.value = 'manifest');
+
+    return {defaultIcon, icon, iconPixelSize, imageError};
   }
 };
 </script>
