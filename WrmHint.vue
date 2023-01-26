@@ -73,9 +73,6 @@ export default {
     }
   },
   setup(props) {
-    const hint = toRef(props, 'hint');
-    const defaultIcon = toRef(props, 'defaultIcon');
-    const active = toRef(props, 'active');
     const selected = toRef(props, 'selected');
     const selectable = toRef(props, 'selectable');
     const disabled = toRef(props, 'disabled');
@@ -92,7 +89,7 @@ export default {
       return classes.join(' ');
     });
 
-    return {hint, defaultIcon, active, hintClass};
+    return {hintClass};
   },
   emits: ['click']
 };

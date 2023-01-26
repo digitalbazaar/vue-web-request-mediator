@@ -8,29 +8,14 @@
 import './main.less';
 
 export {getWebAppManifestIcon} from './manifest.js';
-
-// FIXME: export components instead
-export function install(Vue, options) {
-  Vue.component(
-    'wrm-checkbox', () => import('./WrmCheckbox.vue'));
-  Vue.component(
-    'wrm-header-back-button', () => import('./WrmHeaderBackButton.vue'));
-  Vue.component(
-    'wrm-header-close-button', () => import('./WrmHeaderCloseButton.vue'));
-  Vue.component(
-    'wrm-hint', () => import('./WrmHint.vue'));
-  Vue.component(
-    'wrm-hint-chooser', () => import('./WrmHintChooser.vue'));
-  Vue.component(
-    'wrm-origin', () => import('./WrmOrigin.vue'));
-  Vue.component(
-    'wrm-origin-card', () => import('./WrmOriginCard.vue'));
-  Vue.component(
-    'wrm-origin-icon', () => import('./WrmOriginIcon.vue'));
-  Vue.component(
-    'wrm-origin-name', () => import('./WrmOriginName.vue'));
-  Vue.component(
-    'wrm-permission-dialog', () => import('./WrmPermissionDialog.vue'));
-  Vue.component(
-    'wrm-wizard-dialog', () => import('./WrmWizardDialog.vue'));
-}
+export {default as WrmCheckbox} from './WrmCheckbox.vue';
+export {default as WrmHeaderBackButton} from './WrmHeaderBackButton.vue';
+export {default as WrmHeaderCloseButton} from './WrmHeaderCloseButton.vue';
+export {default as WrmHint} from './WrmHint.vue';
+export {default as WrmHintChooser} from './WrmHintChooser.vue';
+export {default as WrmOrigin} from './WrmOrigin.vue';
+export {default as WrmOriginCard} from './WrmOriginCard.vue';
+export {default as WrmOriginIcon} from './WrmOriginIcon.vue';
+export {default as WrmOriginName} from './WrmOriginName.vue';
+export {default as WrmPermissionDialog} from './WrmPermissionDialog.vue';
+export {default as WrmWizardDialog} from './WrmWizardDialog.vue';

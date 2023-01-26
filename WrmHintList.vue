@@ -94,11 +94,7 @@ export default {
   },
   setup(props, {emit}) {
     const hints = toRef(props, 'hints');
-    const defaultHintIcon = toRef(props, 'defaultHintIcon');
-    const enableRemoveHint = toRef(props, 'enableRemoveHint');
-    const cancelRemoveHintTimeout = toRef(props, 'cancelRemoveHintTimeout');
     const hintRemovalText = toRef(props, 'hintRemovalText');
-    const activateOnSelect = toRef(props, 'activateOnSelect');
 
     const selectedHint = ref(null);
     const confirmingRemove = ref(false);
@@ -166,8 +162,7 @@ export default {
     };
 
     return {
-      defaultHintIcon, enableRemoveHint, cancelRemoveHintTimeout,
-      activateOnSelect, selectedHint, confirmingRemove,
+      selectedHint, confirmingRemove,
       jitHints, nonJitHints, hasMixedHints,
       cancelRemove, confirmRemove, remove, select
     };

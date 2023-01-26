@@ -109,12 +109,7 @@ export default {
     const selectedHint = ref(null);
 
     const hints = toRef(props, 'hints');
-    const defaultHintIcon = toRef(props, 'defaultHintIcon');
-    const enableRemoveHint = toRef(props, 'enableRemoveHint');
-    const cancelRemoveHintTimeout = toRef(props, 'cancelRemoveHintTimeout');
-    const hintRemovalText = toRef(props, 'hintRemovalText');
     const confirmButton = toRef(props, 'confirmButton');
-    const confirmButtonText = toRef(props, 'confirmButtonText');
 
     let _resolve;
 
@@ -216,8 +211,6 @@ export default {
 
     return {
       confirming, display, selectedHint,
-      hints, defaultHintIcon, enableRemoveHint, cancelRemoveHintTimeout,
-      hintRemovalText, confirmButton, confirmButtonText,
       onCancel, confirm, removeHint, select
     };
   },

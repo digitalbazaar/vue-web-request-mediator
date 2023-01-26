@@ -137,7 +137,7 @@ export default {
     const iconText = computed(
       () => removing.value ? undoText.value : removeText.value);
 
-    return {disabled, anyDisabled, clicked, buttonClass, icon, iconText};
+    return {anyDisabled, clicked, buttonClass, icon, iconText};
   }
 };
 </script>

@@ -39,7 +39,7 @@ export default {
       }
       return null;
     });
-    return {domain, origin};
+    return {domain};
   }
 };
 </script>

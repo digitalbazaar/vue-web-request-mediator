@@ -85,7 +85,7 @@ export default {
     // `computed` icon is insufficient
     watch(manifest, () => iconType.value = 'manifest');
 
-    return {defaultIcon, icon, iconPixelSize, imageError};
+    return {icon, iconPixelSize, imageError};
   }
 };
 </script>
