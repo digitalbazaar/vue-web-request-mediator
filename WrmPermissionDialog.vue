@@ -33,25 +33,12 @@
  * Copyright (c) 2018-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
+import {onBeforeUnmount, onMounted} from 'vue';
 import WrmCloseButton from './WrmCloseButton.vue';
 
 export default {
   name: 'WrmPermissionDialog',
   components: {WrmCloseButton},
-  emits: ['allow', 'deny'],
-  async created() {
-    const self = this;
-    this._listener = event => {
-      if(event.key === 'Escape') {
-        event.preventDefault();
-        self.onDeny();
-      }
-    };
-    document.addEventListener('keydown', this._listener);
-  },
-  destroyed() {
-    document.removeEventListener('keydown', this._listener);
-  },
   props: {
     origin: {
       type: String,
@@ -62,14 +49,29 @@ export default {
       required: true
     }
   },
-  methods: {
-    async onAllow() {
-      this.$emit('allow');
-    },
-    async onDeny() {
-      this.$emit('deny');
-    }
-  }
+  setup(props, {emit}) {
+    const onAllow = () => emit('allow');
+    const onDeny = () => emit('deny');
+
+    let listener;
+
+    onMounted(() => {
+      listener = event => {
+        if(event.key === 'Escape') {
+          event.preventDefault();
+          onDeny();
+        }
+      };
+      document.addEventListener('keydown', listener);
+    });
+
+    onBeforeUnmount(() => {
+      document.removeEventListener('keydown', listener);
+    });
+
+    return {onAllow, onDeny};
+  },
+  emits: ['allow', 'deny']
 };
 </script>
 
