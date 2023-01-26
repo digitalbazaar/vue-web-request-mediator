@@ -1,9 +1,14 @@
 <template>
-  <div :class="hintClass" style="overflow: hidden">
-    <i v-if="!hint.icon"
+  <div
+    :class="hintClass"
+    style="overflow: hidden">
+    <i
+      v-if="!hint.icon"
       :class="[defaultIcon, 'fas wrm-flex-item']"
-      style="font-size: 48px"></i>
-    <img v-if="hint.icon" :src="hint.icon.fetchedImage"
+      style="font-size: 48px" />
+    <img
+      v-if="hint.icon"
+      :src="hint.icon.fetchedImage"
       crossorigin="anonymous"
       style="width: 48px; min-width: 48px; max-height: 48px"
       class="wrm-flex-item">
@@ -11,11 +16,15 @@
       style="margin-left: 10px; margin-top: 3px; align-items: start;
         overflow: hidden"
       class="wrm-flex-column wrm-flex-item-grow">
-      <div class="wrm-flex-item-grow wrm-ellipsis" style="width: 100%">
+      <div
+        class="wrm-flex-item-grow wrm-ellipsis"
+        style="width: 100%">
         <strong style="font-size: 14px">{{hint.name}}</strong>
         <wrm-origin :origin="hint.origin" />
         <div style="margin-top: 3px">
-          <strong v-if="hint.jit" style="font-size: 10px">
+          <strong
+            v-if="hint.jit"
+            style="font-size: 10px">
             Recommended by {{hint.jit.recommendedBy.name}}
           </strong>
         </div>
@@ -28,7 +37,7 @@
       <div
         v-else
         class="wrm-activity-bar wrm-flex-item"
-        style="visibility: hidden"></div>
+        style="visibility: hidden" />
     </div>
   </div>
 </template>
@@ -41,11 +50,10 @@
  */
 import {computed, toRef} from 'vue';
 import WrmActivityBar from './WrmActivityBar.vue';
-import WrmOriginName from './WrmOriginName.vue';
 
 export default {
   name: 'WrmHint',
-  components: {WrmActivityBar, WrmOriginName},
+  components: {WrmActivityBar},
   props: {
     hint: {
       type: Object,
@@ -72,6 +80,7 @@ export default {
       required: true
     }
   },
+  emits: ['click'],
   setup(props) {
     const selected = toRef(props, 'selected');
     const selectable = toRef(props, 'selectable');
@@ -90,8 +99,7 @@ export default {
     });
 
     return {hintClass};
-  },
-  emits: ['click']
+  }
 };
 </script>
 

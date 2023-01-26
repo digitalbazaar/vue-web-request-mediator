@@ -2,41 +2,52 @@
   <div class="wrm-modal">
     <div class="wrm-modal-content wrm-modern">
       <div class="wrm-flex-row wrm-modal-content-header wrm-modern">
-        <wrm-header-back-button v-if="!first && !hideBackButton"
+        <wrm-header-back-button
+          v-if="!first && !hideBackButton"
           @click="onBack()" />
         <div
           class="wrm-flex-item-grow"
           style="padding: 0 15px; overflow: hidden;">
-          <slot name="header"></slot>
+          <slot name="header" />
         </div>
         <wrm-header-close-button
           v-if="!hideCancelButton"
-          @click="onCancel()"
-          ref="close" />
+          ref="close"
+          @click="onCancel()" />
       </div>
       <div>
-        <slot name="body"></slot>
+        <slot name="body" />
       </div>
       <slot name="footer">
         <!-- div class="wrm-separator"></div -->
-        <div class="wrm-button-bar" style="margin-top: 10px">
-          <button type="button" class="wrm-button"
+        <div
+          class="wrm-button-bar"
+          style="margin-top: 10px">
+          <button
+            type="button"
+            class="wrm-button"
             :disabled="loading"
             @click="onCancel()">
             Cancel
           </button>
-          <button type="button" class="wrm-button wrm-primary" v-if="hasNext"
+          <button
+            v-if="hasNext"
+            ref="next"
+            type="button"
+            class="wrm-button wrm-primary"
             style="margin-left: 5px"
             :disabled="loading || blocked"
-            @click="onNext()"
-            ref="next">
+            @click="onNext()">
             Next
           </button>
-          <button type="button" class="wrm-button wrm-primary" v-else
+          <button
+            v-else
+            ref="finish"
+            type="button"
+            class="wrm-button wrm-primary"
             style="margin-left: 5px"
             :disabled="loading || blocked"
-            @click="onFinish()"
-            ref="finish">
+            @click="onFinish()">
             Finish
           </button>
         </div>
@@ -81,6 +92,7 @@ export default {
       required: true
     }
   },
+  emits: ['cancel', 'next', 'back', 'finish'],
   setup(props, {emit}) {
     const close = ref(null);
     const finish = ref(null);
@@ -113,8 +125,7 @@ export default {
     });
 
     return {close, finish, next, onCancel, onNext, onBack, onFinish};
-  },
-  emits: ['cancel', 'next', 'back', 'finish']
+  }
 };
 </script>
 

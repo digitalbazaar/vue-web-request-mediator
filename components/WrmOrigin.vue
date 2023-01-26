@@ -2,10 +2,10 @@
   <div
     class="wrm-flex-row"
     style="justify-content: flex-start; font-weight: bold">
-    <i class="fas fa-lock wrm-flex-item wrm-green"
-      style="padding-right: 6px"></i>
+    <i
+      class="fas fa-lock wrm-flex-item wrm-green"
+      style="padding-right: 6px" />
     <span v-if="domain">
-      <!-- span class="wrm-green">https</span><span class="wrm-dark-gray">://{{domain}}</span -->
       <span class="wrm-dark-gray">{{domain}}</span>
     </span>
     <span v-else>

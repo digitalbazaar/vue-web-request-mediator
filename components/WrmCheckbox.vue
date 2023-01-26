@@ -1,11 +1,18 @@
 <template>
-  <div class="wrm-checkbox"
+  <div
+    class="wrm-checkbox"
     :class="checkboxClass"
     :style="checkboxStyle">
     <label>
-      <input type="checkbox" :checked="value" :disabled="disabled"
-        :style="checkboxStyle" @input="toggle">
-      <span class="wrm-label" :class="labelClass"
+      <input
+        type="checkbox"
+        :checked="value"
+        :disabled="disabled"
+        :style="checkboxStyle"
+        @input="toggle">
+      <span
+        class="wrm-label"
+        :class="labelClass"
         :style="labelStyle">{{label}}</span>
     </label>
   </div>
@@ -22,11 +29,13 @@ export default {
   props: {
     checkboxClass: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     checkboxStyle: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     disabled: {
       type: Boolean,
@@ -34,28 +43,31 @@ export default {
     },
     label: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     labelClass: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     labelStyle: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     value: {
       type: Boolean,
       required: true
     }
   },
+  emits: ['input'],
   setup(props, {emit}) {
     const toggle = event => {
       emit('input', event.target.checked);
     };
     return {toggle};
-  },
-  emits: ['input']
+  }
 };
 </script>
 

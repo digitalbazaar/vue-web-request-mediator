@@ -5,22 +5,28 @@
       <div style="margin-right: 10px">
         <strong>{{origin}}</strong> wants to
       </div>
-      <div style="padding-top: 15px"></div>
+      <div style="padding-top: 15px" />
       <div
         v-for="permission in permissions"
         :key="permission.name">
-        <i :class="permission.icon"></i> {{permission.name}}
+        <i :class="permission.icon" /> {{permission.name}}
       </div>
       <br>
-      <div class="wrm-button-bar" style="margin-top: 10px">
+      <div
+        class="wrm-button-bar"
+        style="margin-top: 10px">
         <button
-          @click="onDeny()"
-          type="button" class="wrm-button">Block
+          type="button"
+          class="wrm-button"
+          @click="onDeny()">
+          Block
         </button>
-        <span style="margin-right: 5px"></span>
+        <span style="margin-right: 5px" />
         <button
-          @click="onAllow()"
-          type="button" class="wrm-button">Allow
+          type="button"
+          class="wrm-button"
+          @click="onAllow()">
+          Allow
         </button>
       </div>
     </div>
@@ -49,6 +55,7 @@ export default {
       required: true
     }
   },
+  emits: ['allow', 'deny'],
   setup(props, {emit}) {
     const onAllow = () => emit('allow');
     const onDeny = () => emit('deny');
@@ -70,8 +77,7 @@ export default {
     });
 
     return {onAllow, onDeny};
-  },
-  emits: ['allow', 'deny']
+  }
 };
 </script>
 
