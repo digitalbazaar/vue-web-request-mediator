@@ -2,15 +2,14 @@
  * Vue Web Request Mediator Components.
  *
  * New BSD License (3-clause)
- * Copyright (c) 2018-2019, Digital Bazaar, Inc.
+ * Copyright (c) 2018-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
-'use strict';
-
 import './main.less';
 
 export {getWebAppManifestIcon} from './manifest.js';
 
+// FIXME: export components instead
 export function install(Vue, options) {
   Vue.component(
     'wrm-checkbox', () => import('./WrmCheckbox.vue'));

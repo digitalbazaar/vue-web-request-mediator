@@ -1,10 +1,8 @@
 /*!
  * New BSD License (3-clause)
- * Copyright (c) 2018, Digital Bazaar, Inc.
+ * Copyright (c) 2018-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
-'use strict';
-
 export function getWebAppManifestIcon({manifest, origin, size, theme}) {
   let best = null;
   if(!theme) {
