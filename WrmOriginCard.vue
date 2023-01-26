@@ -19,10 +19,11 @@
     </div>
   </div>
 </template>
+
 <script>
 /*!
  * New BSD License (3-clause)
- * Copyright (c) 2017-2021, Digital Bazaar, Inc.
+ * Copyright (c) 2017-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
 import WrmOriginIcon from './WrmOriginIcon.vue';
@@ -48,5 +49,6 @@ export default {
   }
 };
 </script>
+
 <style>
 </style>

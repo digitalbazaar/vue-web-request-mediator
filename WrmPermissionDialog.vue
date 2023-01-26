@@ -1,7 +1,7 @@
 <template>
   <div class="wrm-modal">
     <div class="wrm-modal-content">
-      <wrm-close-button @click.native="onDeny()" />
+      <wrm-close-button @click="onDeny()" />
       <div style="margin-right: 10px">
         <strong>{{origin}}</strong> wants to
       </div>
@@ -26,10 +26,11 @@
     </div>
   </div>
 </template>
+
 <script>
 /*!
  * New BSD License (3-clause)
- * Copyright (c) 2018-2021, Digital Bazaar, Inc.
+ * Copyright (c) 2018-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
 import WrmCloseButton from './WrmCloseButton.vue';
@@ -37,6 +38,7 @@ import WrmCloseButton from './WrmCloseButton.vue';
 export default {
   name: 'WrmPermissionDialog',
   components: {WrmCloseButton},
+  emits: ['allow', 'deny'],
   async created() {
     const self = this;
     this._listener = event => {
@@ -70,5 +72,6 @@ export default {
   }
 };
 </script>
+
 <style>
 </style>

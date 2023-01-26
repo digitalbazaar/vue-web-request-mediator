@@ -17,11 +17,12 @@
 <script>
 /*!
  * New BSD License (3-clause)
- * Copyright (c) 2021, Digital Bazaar, Inc.
+ * Copyright (c) 2021-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
 export default {
   name: 'WrmRemoveButton',
+  emits: ['cancel', 'confirm', 'remove'],
   props: {
     disabled: {
       type: Boolean,
