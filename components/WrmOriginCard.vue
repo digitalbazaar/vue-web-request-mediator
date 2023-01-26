@@ -6,13 +6,14 @@
       :manifest="manifest"
       style="padding-right: 10px" />
     <div class="wrm-flex-item-grow wrm-ellipsis">
-      <wrm-origin-name v-if="manifest"
+      <wrm-origin-name
+        v-if="manifest"
         :origin="origin"
         :manifest="manifest"
         class="wrm-flex-item-grow"
         style="padding-bottom: 2px; font-size: 14px">
         <template slot="task">
-          <slot name="task"></slot>
+          <slot name="task" />
         </template>
       </wrm-origin-name>
       <wrm-origin :origin="origin" />
@@ -44,7 +45,8 @@ export default {
     },
     manifest: {
       type: Object,
-      required: false
+      required: false,
+      default: null
     }
   }
 };

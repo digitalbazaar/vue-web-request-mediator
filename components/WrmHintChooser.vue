@@ -1,7 +1,13 @@
 <template>
   <div>
-    <div v-if="display === 'list'" class="wrm-slide">
-      <div class="wrm-heading" style="padding: 2px 0">Choose an option</div>
+    <div
+      v-if="display === 'list'"
+      class="wrm-slide">
+      <div
+        class="wrm-heading"
+        style="padding: 2px 0">
+        Choose an option
+      </div>
       <wrm-hint-list
         :hints="hints"
         :default-hint-icon="defaultHintIcon"
@@ -11,10 +17,13 @@
         @remove="removeHint"
         @select="select" />
     </div>
-    <div v-else-if="display === 'overview'" class="wrm-slide">
-      <slot name="message"></slot>
+    <div
+      v-else-if="display === 'overview'"
+      class="wrm-slide">
+      <slot name="message" />
       <!-- confirm button ON and at least one choice-->
-      <div v-if="confirmButton && hints.length > 0"
+      <div
+        v-if="confirmButton && hints.length > 0"
         @click="!confirming && (display = 'list')">
         <wrm-hint
           :hint="selectedHint || hints[0]"
@@ -25,7 +34,8 @@
           :disabled="false" />
       </div>
       <!-- confirm button OFF; selection integrated -->
-      <div v-else-if="!confirmButton && hints.length > 0"
+      <div
+        v-else-if="!confirmButton && hints.length > 0"
         class="wrm-flex-column-stretch">
         <wrm-hint-list
           :hints="hints"
@@ -37,23 +47,28 @@
           @remove="removeHint"
           @select="confirm" />
       </div>
-      <slot name="hint-list-footer"></slot>
-      <div v-if="confirmButton"
-        class="wrm-button-bar" style="margin-top: 10px">
-        <button type="button" class="wrm-button"
+      <slot name="hint-list-footer" />
+      <div
+        v-if="confirmButton"
+        class="wrm-button-bar"
+        style="margin-top: 10px">
+        <button
+          type="button"
+          class="wrm-button"
           :disabled="confirming"
           @click="onCancel()">
           Cancel
         </button>
         <button
+          type="button"
+          class="wrm-button wrm-primary"
           style="margin-left: 5px"
           :disabled="confirming || hints.length === 0"
-          @click="confirm({hint: selectedHint, waitUntil: () => {}})"
-          type="button" class="wrm-button wrm-primary">
+          @click="confirm({hint: selectedHint, waitUntil: () => {}})">
           {{confirmButtonText}}
         </button>
       </div>
-      <slot name="footer"></slot>
+      <slot name="footer" />
     </div>
   </div>
 </template>
@@ -64,14 +79,13 @@
  * Copyright (c) 2018-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
-import {onMounted, onBeforeUnMount, ref, toRef} from 'vue';
-import WrmCloseButton from './WrmCloseButton.vue';
+import {onBeforeUnmount, onMounted, ref, toRef} from 'vue';
 import WrmHint from './WrmHint.vue';
 import WrmHintList from './WrmHintList.vue';
 
 export default {
   name: 'WrmHintChooser',
-  components: {WrmCloseButton, WrmHint, WrmHintList},
+  components: {WrmHint, WrmHintList},
   props: {
     hints: {
       type: Array,
@@ -103,6 +117,7 @@ export default {
       default: 'Confirm'
     }
   },
+  emits: ['cancel', 'confirm', 'remove-hint'],
   setup(props, {emit}) {
     const display = ref('overview');
     const confirming = ref(false);
@@ -205,7 +220,7 @@ export default {
       document.addEventListener('keydown', listener);
     });
 
-    onBeforeUnMount(() => {
+    onBeforeUnmount(() => {
       document.removeEventListener('keydown', listener);
     });
 
@@ -213,8 +228,7 @@ export default {
       confirming, display, selectedHint,
       onCancel, confirm, removeHint, select
     };
-  },
-  emits: ['cancel', 'confirm', 'remove-hint']
+  }
 };
 </script>
 

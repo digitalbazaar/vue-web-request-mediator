@@ -2,7 +2,10 @@
   <div class="wrm-header-close-button">
     <div>
       <svg>
-        <circle cx="12.5" cy="12.5" r="18" />
+        <circle
+          cx="12.5"
+          cy="12.5"
+          r="18" />
         <path d="M6.5, 6.5, 18.5, 18.5" />
         <path d="M6.5, 18.5, 18.5, 6.5" />
       </svg>

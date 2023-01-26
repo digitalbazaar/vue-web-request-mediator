@@ -4,8 +4,13 @@
     @click="!disabled && clicked()">
     <div>
       <svg :class="anyDisabled ? 'wrm-disabled' : ''">
-        <circle cx="14" cy="14" r="14" />
-        <text x="7" y="19">{{icon}}</text>
+        <circle
+          cx="14"
+          cy="14"
+          r="14" />
+        <text
+          x="7"
+          y="19">{{icon}}</text>
       </svg>
     </div>
     <div style="float: none; font-size: 10px; text-align: center">
@@ -24,7 +29,6 @@ import {computed, ref, toRef} from 'vue';
 
 export default {
   name: 'WrmRemoveButton',
-  emits: ['cancel', 'confirm', 'remove'],
   props: {
     disabled: {
       type: Boolean,
@@ -44,6 +48,7 @@ export default {
       default: 'Undo'
     }
   },
+  emits: ['cancel', 'confirm', 'remove'],
   setup(props, {emit}) {
     // FIXME: consider using vue-extendable-event instead
     const onConfirm = async () => {
@@ -60,7 +65,7 @@ export default {
       let promise = Promise.resolve();
       emit('remove', {waitUntil: p => promise = p});
       return promise;
-    }
+    };
 
     const canceling = ref(false);
     const cancelTimeout = toRef(props, 'cancelTimeout');
@@ -82,7 +87,7 @@ export default {
           console.error(e);
         } finally {
           removing.value = false;
-          his.canceling.value = false;
+          canceling.value = false;
         }
         return;
       }

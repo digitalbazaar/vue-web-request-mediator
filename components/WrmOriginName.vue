@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot name="task"></slot>
+    <slot name="task" />
     <div>
       <strong>{{name}}</strong>
     </div>
@@ -24,7 +24,8 @@ export default {
     },
     manifest: {
       type: Object,
-      required: false
+      required: false,
+      default: null
     }
   },
   setup(props) {

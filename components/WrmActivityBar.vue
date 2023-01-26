@@ -1,6 +1,6 @@
 <template>
   <div class="wrm-activity-bar">
-    <div class="wrm-activity-line"></div>
+    <div class="wrm-activity-line" />
   </div>
 </template>
 

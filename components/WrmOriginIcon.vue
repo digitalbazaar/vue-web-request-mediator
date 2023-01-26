@@ -4,7 +4,7 @@
       v-if="iconType === 'default'"
       style="vertical-align: middle"
       :style="{'font-size': iconPixelSize}"
-      :class="defaultIcon"></i>
+      :class="defaultIcon" />
     <img
       v-else
       crossorigin="anonymous"
@@ -45,14 +45,15 @@ export default {
     },
     manifest: {
       type: Object,
-      required: false
+      required: false,
+      default: null
     }
   },
   setup(props) {
-    const defaultIcon = toRef(props, 'defaultIcon');
     const iconType = ref('manifest');
     const iconSize = toRef(props, 'iconSize');
     const origin = toRef(props, 'origin');
+    const manifest = toRef(props, 'manifest');
 
     const favicon = computed(() => {
       if(iconType.value === 'default') {

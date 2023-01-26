@@ -2,7 +2,10 @@
   <div class="wrm-close-button">
     <div>
       <svg>
-        <circle cx="9.5" cy="9.5" r="12" />
+        <circle
+          cx="9.5"
+          cy="9.5"
+          r="12" />
         <path d="M5, 5, 14, 14" />
         <path d="M5, 14, 14, 5" />
       </svg>

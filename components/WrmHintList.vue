@@ -1,12 +1,11 @@
 <template>
   <div class="wrm-flex-column-stretch">
     <div class="wrm-flex-column-stretch wrm-flex-item-grow">
-      <div class="wrm-flex-row wrm-flex-item"
+      <div
         v-for="hint in nonJitHints"
-        :key="hint.hintOption.credentialHandler">
+        :key="hint.hintOption.credentialHandler"
+        class="wrm-flex-row wrm-flex-item">
         <wrm-hint
-          @click="!confirmingRemove && !removingHint &&
-            !selectedHint && select(hint)"
           class="wrm-flex-item-grow"
           :hint="hint"
           :default-icon="defaultHintIcon"
@@ -16,29 +15,28 @@
           :selected="selectedHint === hint"
           :selectable="true"
           :disabled="!!(removingHint || confirmingRemove ||
-            (selectedHint && selectedHint !== hint))">
-        </wrm-hint>
+            (selectedHint && selectedHint !== hint))"
+          @click="!confirmingRemove && !removingHint &&
+            !selectedHint && select(hint)" />
         <wrm-remove-button
           v-if="enableRemoveHint"
-          @cancel="cancelRemove(hint)"
-          @confirm="confirmRemove(hint)"
-          @remove="remove(hint)"
           class="wrm-flex-item"
           :cancel-timeout="cancelRemoveHintTimeout"
           :disabled="!!(removingHint || selectedHint ||
             (removeHint && removeHint !== hint))"
-          :remove-text="'Hide'">
-        </wrm-remove-button>
+          :remove-text="'Hide'"
+          @cancel="cancelRemove(hint)"
+          @confirm="confirmRemove(hint)"
+          @remove="remove(hint)" />
       </div>
       <div
         v-if="hasMixedHints"
         class="wrm-flex-row wrm-flex-item wrm-separator" />
-      <div class="wrm-flex-row wrm-flex-item"
+      <div
         v-for="hint in jitHints"
-        :key="hint.hintOption.credentialHandler">
+        :key="hint.hintOption.credentialHandler"
+        class="wrm-flex-row wrm-flex-item">
         <wrm-hint
-          @click="!confirmingRemove && !removingHint &&
-            !selectedHint && select(hint)"
           class="wrm-flex-item-grow"
           :hint="hint"
           :default-icon="defaultHintIcon"
@@ -48,8 +46,9 @@
           :selected="selectedHint === hint"
           :selectable="true"
           :disabled="!!(removingHint || confirmingRemove ||
-            (selectedHint && selectedHint !== hint))">
-        </wrm-hint>
+            (selectedHint && selectedHint !== hint))"
+          @click="!confirmingRemove && !removingHint &&
+            !selectedHint && select(hint)" />
       </div>
     </div>
   </div>
@@ -92,6 +91,7 @@ export default {
     },
     activateOnSelect: Boolean
   },
+  emits: ['remove', 'select'],
   setup(props, {emit}) {
     const hints = toRef(props, 'hints');
     const hintRemovalText = toRef(props, 'hintRemovalText');
@@ -166,8 +166,7 @@ export default {
       jitHints, nonJitHints, hasMixedHints,
       cancelRemove, confirmRemove, remove, select
     };
-  },
-  emits: ['remove', 'select']
+  }
 };
 </script>
 
