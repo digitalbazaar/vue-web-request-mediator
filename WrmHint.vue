@@ -39,6 +39,7 @@
  * Copyright (c) 2018-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
+import {computed, toRef} from 'vue';
 import WrmActivityBar from './WrmActivityBar.vue';
 import WrmOriginName from './WrmOriginName.vue';
 
@@ -71,18 +72,27 @@ export default {
       required: true
     }
   },
-  computed: {
-    hintClass() {
+  setup(props) {
+    const hint = toRef(props, 'hint');
+    const defaultIcon = toRef(props, 'defaultIcon');
+    const active = toRef(props, 'active');
+    const selected = toRef(props, 'selected');
+    const selectable = toRef(props, 'selectable');
+    const disabled = toRef(props, 'disabled');
+
+    const hintClass = computed(() => {
       const classes = ['wrm-flex-row', 'wrm-item'];
-      if(this.disabled) {
+      if(disabled.value) {
         classes.push('wrm-disabled');
-      } else if(this.selected) {
+      } else if(selected.value) {
         classes.push('wrm-selected');
-      } else if(this.selectable) {
+      } else if(selectable.value) {
         classes.push('wrm-selectable');
       }
       return classes.join(' ');
-    }
+    });
+
+    return {hint, defaultIcon, active, hintClass};
   },
   emits: ['click']
 };
