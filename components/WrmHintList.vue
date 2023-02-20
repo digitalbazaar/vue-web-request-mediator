@@ -1,5 +1,5 @@
 <template>
-  <div class="wrm-flex-column-stretch">
+  <div class="wrm-flex-column-stretch wrm-hint-list">
     <div class="wrm-flex-column-stretch wrm-flex-item-grow">
       <div
         v-for="hint in nonJitHints"
