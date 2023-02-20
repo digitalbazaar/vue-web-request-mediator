@@ -1,55 +1,53 @@
 <template>
   <div class="wrm-flex-column-stretch wrm-hint-list">
-    <div class="wrm-flex-column-stretch wrm-flex-item-grow">
-      <div
-        v-for="hint in nonJitHints"
-        :key="hint.hintOption.credentialHandler"
-        class="wrm-flex-row wrm-flex-item">
-        <wrm-hint
-          class="wrm-flex-item-grow"
-          :hint="hint"
-          :default-icon="defaultHintIcon"
-          :active="!!(
-            ((confirmingRemove || removingHint) && removeHint === hint) ||
-            (activateOnSelect && selectedHint === hint))"
-          :selected="selectedHint === hint"
-          :selectable="true"
-          :disabled="!!(removingHint || confirmingRemove ||
-            (selectedHint && selectedHint !== hint))"
-          @click="!confirmingRemove && !removingHint &&
-            !selectedHint && select(hint)" />
-        <wrm-remove-button
-          v-if="enableRemoveHint"
-          class="wrm-flex-item"
-          :cancel-timeout="cancelRemoveHintTimeout"
-          :disabled="!!(removingHint || selectedHint ||
-            (removeHint && removeHint !== hint))"
-          :remove-text="'Hide'"
-          @cancel="cancelRemove(hint)"
-          @confirm="confirmRemove(hint)"
-          @remove="remove(hint)" />
-      </div>
-      <div
-        v-if="hasMixedHints"
-        class="wrm-flex-row wrm-flex-item wrm-separator" />
-      <div
-        v-for="hint in jitHints"
-        :key="hint.hintOption.credentialHandler"
-        class="wrm-flex-row wrm-flex-item">
-        <wrm-hint
-          class="wrm-flex-item-grow"
-          :hint="hint"
-          :default-icon="defaultHintIcon"
-          :active="!!(
-            ((confirmingRemove || removingHint) && removeHint === hint) ||
-            (activateOnSelect && selectedHint === hint))"
-          :selected="selectedHint === hint"
-          :selectable="true"
-          :disabled="!!(removingHint || confirmingRemove ||
-            (selectedHint && selectedHint !== hint))"
-          @click="!confirmingRemove && !removingHint &&
-            !selectedHint && select(hint)" />
-      </div>
+    <div
+      v-for="hint in nonJitHints"
+      :key="hint.hintOption.credentialHandler"
+      class="wrm-flex-row wrm-flex-item">
+      <wrm-hint
+        class="wrm-flex-item-grow"
+        :hint="hint"
+        :default-icon="defaultHintIcon"
+        :active="!!(
+          ((confirmingRemove || removingHint) && removeHint === hint) ||
+          (activateOnSelect && selectedHint === hint))"
+        :selected="selectedHint === hint"
+        :selectable="true"
+        :disabled="!!(removingHint || confirmingRemove ||
+          (selectedHint && selectedHint !== hint))"
+        @click="!confirmingRemove && !removingHint &&
+          !selectedHint && select(hint)" />
+      <wrm-remove-button
+        v-if="enableRemoveHint"
+        class="wrm-flex-item"
+        :cancel-timeout="cancelRemoveHintTimeout"
+        :disabled="!!(removingHint || selectedHint ||
+          (removeHint && removeHint !== hint))"
+        :remove-text="'Hide'"
+        @cancel="cancelRemove(hint)"
+        @confirm="confirmRemove(hint)"
+        @remove="remove(hint)" />
+    </div>
+    <div
+      v-if="hasMixedHints"
+      class="wrm-flex-row wrm-flex-item wrm-separator" />
+    <div
+      v-for="hint in jitHints"
+      :key="hint.hintOption.credentialHandler"
+      class="wrm-flex-row wrm-flex-item">
+      <wrm-hint
+        class="wrm-flex-item-grow"
+        :hint="hint"
+        :default-icon="defaultHintIcon"
+        :active="!!(
+          ((confirmingRemove || removingHint) && removeHint === hint) ||
+          (activateOnSelect && selectedHint === hint))"
+        :selected="selectedHint === hint"
+        :selectable="true"
+        :disabled="!!(removingHint || confirmingRemove ||
+          (selectedHint && selectedHint !== hint))"
+        @click="!confirmingRemove && !removingHint &&
+          !selectedHint && select(hint)" />
     </div>
   </div>
 </template>
