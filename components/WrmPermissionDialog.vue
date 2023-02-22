@@ -1,7 +1,7 @@
 <template>
   <div class="wrm-modal">
     <div class="wrm-modal-content">
-      <wrm-close-button @click="onDeny()" />
+      <WrmCloseButton @click="onDeny()" />
       <div style="margin-right: 10px">
         <strong>{{origin}}</strong> wants to
       </div>

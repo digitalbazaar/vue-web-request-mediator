@@ -20,7 +20,7 @@
         class="wrm-flex-item-grow wrm-ellipsis"
         style="width: 100%">
         <strong style="font-size: 14px">{{hint.name}}</strong>
-        <wrm-origin :origin="hint.origin" />
+        <WrmOrigin :origin="hint.origin" />
         <div style="margin-top: 3px">
           <strong
             v-if="hint.jit"
@@ -29,7 +29,7 @@
           </strong>
         </div>
       </div>
-      <wrm-activity-bar
+      <WrmActivityBar
         v-if="active"
         class="wrm-flex-item"
         style="margin-top: 1px" />
@@ -50,10 +50,11 @@
  */
 import {computed, toRef} from 'vue';
 import WrmActivityBar from './WrmActivityBar.vue';
+import WrmOrigin from './WrmOrigin.vue';
 
 export default {
   name: 'WrmHint',
-  components: {WrmActivityBar},
+  components: {WrmActivityBar, WrmOrigin},
   props: {
     hint: {
       type: Object,

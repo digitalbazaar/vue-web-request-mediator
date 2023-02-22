@@ -8,7 +8,7 @@
         style="padding: 2px 0">
         Choose an option
       </div>
-      <wrm-hint-list
+      <WrmHintList
         :hints="hints"
         :default-hint-icon="defaultHintIcon"
         :enable-remove-hint="enableRemoveHint"
@@ -25,7 +25,7 @@
       <div
         v-if="confirmButton && hints.length > 0"
         @click="!confirming && (display = 'list')">
-        <wrm-hint
+        <WrmHint
           :hint="selectedHint || hints[0]"
           :default-icon="defaultHintIcon"
           :active="confirming"
@@ -37,7 +37,7 @@
       <div
         v-else-if="!confirmButton && hints.length > 0"
         class="wrm-flex-column-stretch">
-        <wrm-hint-list
+        <WrmHintList
           :hints="hints"
           :default-hint-icon="defaultHintIcon"
           :enable-remove-hint="enableRemoveHint"

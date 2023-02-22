@@ -2,7 +2,7 @@
   <div class="wrm-modal">
     <div class="wrm-modal-content wrm-modern">
       <div class="wrm-flex-row wrm-modal-content-header wrm-modern">
-        <wrm-header-back-button
+        <WrmHeaderBackButton
           v-if="!first && !hideBackButton"
           @click="onBack()" />
         <div
@@ -10,7 +10,7 @@
           style="padding: 0 15px; overflow: hidden;">
           <slot name="header" />
         </div>
-        <wrm-header-close-button
+        <WrmHeaderCloseButton
           v-if="!hideCancelButton"
           ref="close"
           @click="onCancel()" />
@@ -63,9 +63,12 @@
  * All rights reserved.
  */
 import {onBeforeUnmount, onMounted, ref} from 'vue';
+import WrmHeaderBackButton from './WrmHeaderBackButton.vue';
+import WrmHeaderCloseButton from './WrmHeaderCloseButton.vue';
 
 export default {
   name: 'WrmWizardDialog',
+  components: {WrmHeaderBackButton, WrmHeaderCloseButton},
   props: {
     loading: {
       type: Boolean,
