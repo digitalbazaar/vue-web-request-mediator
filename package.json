@@ -3,15 +3,11 @@
   "version": "5.0.1-0",
   "description": "Vue Web Request Mediator Components",
   "type": "module",
-  "exports": {
-    ".": "./lib/index.js",
-    "./components/": "./components/",
-    "./style/": "./style/"
-  },
+  "exports": "./lib/index.js",
   "files": [
-    "components/*",
-    "lib/*",
-    "style/*"
+    "components/**/*.vue",
+    "lib/**/*.js",
+    "style/**/*.less"
   ],
   "scripts": {
     "lint": "eslint ."
