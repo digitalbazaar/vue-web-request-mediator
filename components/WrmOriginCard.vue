@@ -1,12 +1,12 @@
 <template>
   <div class="wrm-flex-row">
-    <wrm-origin-icon
+    <WrmOriginIcon
       :icon-size="iconSize"
       :origin="origin"
       :manifest="manifest"
       style="padding-right: 10px" />
     <div class="wrm-flex-item-grow wrm-ellipsis">
-      <wrm-origin-name
+      <WrmOriginName
         v-if="manifest"
         :origin="origin"
         :manifest="manifest"
@@ -15,8 +15,8 @@
         <template slot="task">
           <slot name="task" />
         </template>
-      </wrm-origin-name>
-      <wrm-origin :origin="origin" />
+      </WrmOriginName>
+      <WrmOrigin :origin="origin" />
     </div>
   </div>
 </template>
@@ -27,12 +27,13 @@
  * Copyright (c) 2017-2023, Digital Bazaar, Inc.
  * All rights reserved.
  */
+import WrmOrigin from './WrmOrigin.vue';
 import WrmOriginIcon from './WrmOriginIcon.vue';
 import WrmOriginName from './WrmOriginName.vue';
 
 export default {
   name: 'WrmOriginCard',
-  components: {WrmOriginIcon, WrmOriginName},
+  components: {WrmOrigin, WrmOriginIcon, WrmOriginName},
   props: {
     iconSize: {
       type: Number,

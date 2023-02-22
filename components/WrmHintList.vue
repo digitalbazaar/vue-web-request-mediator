@@ -4,7 +4,7 @@
       v-for="hint in nonJitHints"
       :key="hint.hintOption.credentialHandler"
       class="wrm-flex-row wrm-flex-item">
-      <wrm-hint
+      <WrmHint
         class="wrm-flex-item-grow"
         :hint="hint"
         :default-icon="defaultHintIcon"
@@ -17,7 +17,7 @@
           (selectedHint && selectedHint !== hint))"
         @click="!confirmingRemove && !removingHint &&
           !selectedHint && select(hint)" />
-      <wrm-remove-button
+      <WrmRemoveButton
         v-if="enableRemoveHint"
         class="wrm-flex-item"
         :cancel-timeout="cancelRemoveHintTimeout"
@@ -35,7 +35,7 @@
       v-for="hint in jitHints"
       :key="hint.hintOption.credentialHandler"
       class="wrm-flex-row wrm-flex-item">
-      <wrm-hint
+      <WrmHint
         class="wrm-flex-item-grow"
         :hint="hint"
         :default-icon="defaultHintIcon"
