@@ -12,7 +12,7 @@
         :manifest="manifest"
         class="wrm-flex-item-grow"
         style="padding-bottom: 2px; font-size: 14px">
-        <template slot="task">
+        <template #task>
           <slot name="task" />
         </template>
       </WrmOriginName>
