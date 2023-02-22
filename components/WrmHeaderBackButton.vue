@@ -21,8 +21,7 @@
  * All rights reserved.
  */
 export default {
-  name: 'WrmHeaderCloseButton',
-  emits: ['click']
+  name: 'WrmHeaderCloseButton'
 };
 </script>
 

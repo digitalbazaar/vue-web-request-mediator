@@ -20,8 +20,7 @@
  * All rights reserved.
  */
 export default {
-  name: 'WrmCloseButton',
-  emits: ['click']
+  name: 'WrmCloseButton'
 };
 </script>
 

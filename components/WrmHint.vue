@@ -81,7 +81,6 @@ export default {
       required: true
     }
   },
-  emits: ['click'],
   setup(props) {
     const selected = toRef(props, 'selected');
     const selectable = toRef(props, 'selectable');
