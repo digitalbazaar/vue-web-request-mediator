@@ -89,7 +89,7 @@ export default {
     // watch manifest for changes and update icon type and icon to use
     watch(manifest, updateIcon);
 
-    return {icon, iconPixelSize, imageError};
+    return {icon, iconPixelSize, iconType, imageError};
   }
 };
 </script>
