@@ -160,7 +160,7 @@ export default {
     };
 
     return {
-      selectedHint, confirmingRemove,
+      selectedHint, confirmingRemove, removeHint, removingHint,
       jitHints, nonJitHints, hasMixedHints,
       cancelRemove, confirmRemove, remove, select
     };
