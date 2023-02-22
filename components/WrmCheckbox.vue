@@ -6,7 +6,7 @@
     <label>
       <input
         type="checkbox"
-        :checked="value"
+        :checked="modelValue"
         :disabled="disabled"
         :style="checkboxStyle"
         @input="toggle">
@@ -56,15 +56,15 @@ export default {
       required: false,
       default: ''
     },
-    value: {
+    modelValue: {
       type: Boolean,
       required: true
     }
   },
-  emits: ['input'],
+  emits: ['update:modelValue'],
   setup(props, {emit}) {
     const toggle = event => {
-      emit('input', event.target.checked);
+      emit('update:modelValue', event.target.checked);
     };
     return {toggle};
   }
