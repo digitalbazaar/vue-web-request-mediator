@@ -119,9 +119,7 @@ export default {
 
       // focus on a button to allow `Escape` to function properly
       const button = next.value || finish.value || close.value;
-      if(button) {
-        button.focus();
-      }
+      button?.focus?.();
     });
     onBeforeUnmount(() => {
       document.removeEventListener('keydown', listener);
