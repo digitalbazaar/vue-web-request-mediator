@@ -1,5 +1,10 @@
 # vue-web-request-mediator ChangeLog
 
+## 6.0.1 - 2023-02-dd
+
+### Fixed
+- Remove modal border from full screen 1p modal.
+
 ## 6.0.0 - 2023-02-22
 
 ### Changed
