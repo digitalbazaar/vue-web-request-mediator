@@ -1,6 +1,6 @@
 # vue-web-request-mediator ChangeLog
 
-## 6.0.0 - 2023-02-dd
+## 6.0.0 - 2023-02-22
 
 ### Changed
 - **BREAKING**: Require Vue 3.
